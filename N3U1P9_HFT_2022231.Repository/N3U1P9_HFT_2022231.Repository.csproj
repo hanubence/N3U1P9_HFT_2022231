@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\N3U1P9_HFT_2022231.Models\N3U1P9_HFT_2022231.Models.csproj" />
+  </ItemGroup>
+
+</Project>
