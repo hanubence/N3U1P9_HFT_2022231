@@ -28,10 +28,29 @@ namespace N3U1P9_HFT_2022231.Repository
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Shelter>(sh => sh
-                .HasMany<Animal>()
-                .OnDelete(DeleteBehavior.Cascade)
-            );
+            builder.Entity<Shelter>()
+                .HasMany(x => x.animals)
+                .WithOne(x => x.shelter)
+                .HasForeignKey(x => x.shelterId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Shelter>()
+                .HasMany(x => x.workers)
+                .WithOne(x => x.shelter)
+                .HasForeignKey(x => x.shelterId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Animal>()
+                .HasOne(x => x.shelter)
+                .WithMany(x => x.animals)
+                .HasForeignKey(x => x.shelterId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<ShelterWorker>()
+                .HasOne(x => x.shelter)
+                .WithMany(x => x.workers)
+                .HasForeignKey(x => x.shelterId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
