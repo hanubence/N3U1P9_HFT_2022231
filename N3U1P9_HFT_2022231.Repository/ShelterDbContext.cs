@@ -51,6 +51,18 @@ namespace N3U1P9_HFT_2022231.Repository
                 .WithMany(x => x.workers)
                 .HasForeignKey(x => x.shelterId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Shelter>().HasData(new Shelter[] {
+                //fill with data
+            });
+
+            builder.Entity<Animal>().HasData(new Animal[] {
+                //fill with data
+            });
+
+            builder.Entity<ShelterWorker>().HasData(new ShelterWorker[] {
+                //fill with data
+            });
         }
     }
 }
