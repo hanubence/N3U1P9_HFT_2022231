@@ -21,5 +21,16 @@ namespace N3U1P9_HFT_2022231.Models
 
         [Required, Range(0,100000000)]
         public int annualBudget { get; set; }
+
+        public Shelter() { }
+
+        public Shelter(string data)
+        {
+            string[] splitData = data.Split(';');
+            shelterId = int.Parse(splitData[0]);
+            shelterName = splitData[1];
+            shelterAddress = splitData[2];
+            annualBudget = int.Parse(splitData[3]);
+        }
     }
 }
