@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace N3U1P9_HFT_2022231.Models
 {
-    class Shelter
+    public class Shelter
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int shelterId { get; set; }
