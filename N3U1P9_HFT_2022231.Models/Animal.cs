@@ -18,6 +18,8 @@ namespace N3U1P9_HFT_2022231.Models
         [Required, ForeignKey(nameof(Shelter))]
         public int shelterId { get; set; }
 
+        public virtual Shelter shelter { get; private set; }
+
         public Animal()
         {
 
