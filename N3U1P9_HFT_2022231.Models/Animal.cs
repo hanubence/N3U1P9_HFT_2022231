@@ -7,18 +7,18 @@ namespace N3U1P9_HFT_2022231.Models
     public class Animal
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int animalId { get; set; }
+        public int AnimalId { get; set; }
 
         [Required, StringLength(30)]
-        public string animalName { get; set; }
+        public string AnimalName { get; set; }
 
         [Required, Range(1,20)]
-        public int animalAge { get; set; }
+        public int AnimalAge { get; set; }
 
         [Required, ForeignKey(nameof(Shelter))]
-        public int shelterId { get; set; }
+        public int ShelterId { get; set; }
 
-        public virtual Shelter shelter { get; private set; }
+        public virtual Shelter Shelter { get; private set; }
 
         public Animal()
         {
@@ -28,10 +28,10 @@ namespace N3U1P9_HFT_2022231.Models
         public Animal(string data)
         {
             string[] splitData = data.Split(';');
-            animalId = int.Parse(splitData[0]);
-            animalName = splitData[1];
-            animalAge = int.Parse(splitData[2]);
-            shelterId = int.Parse(splitData[3]);
+            AnimalId = int.Parse(splitData[0]);
+            AnimalName = splitData[1];
+            AnimalAge = int.Parse(splitData[2]);
+            ShelterId = int.Parse(splitData[3]);
         }
     }
 }

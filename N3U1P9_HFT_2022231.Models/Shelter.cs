@@ -8,29 +8,29 @@ namespace N3U1P9_HFT_2022231.Models
     public class Shelter
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int shelterId { get; set; }
+        public int ShelterId { get; set; }
 
-        public virtual ICollection<Animal> animals { get; set; }
-        public virtual ICollection<ShelterWorker> workers { get; set; }
-
-        [Required, StringLength(40)]
-        public string shelterName { get; set; }
+        public virtual ICollection<Animal> Animals { get; set; }
+        public virtual ICollection<ShelterWorker> Workers { get; set; }
 
         [Required, StringLength(40)]
-        public string shelterAddress { get; set; }
+        public string ShelterName { get; set; }
+
+        [Required, StringLength(40)]
+        public string ShelterAddress { get; set; }
 
         [Required, Range(0,100000000)]
-        public int annualBudget { get; set; }
+        public int AnnualBudget { get; set; }
 
         public Shelter() { }
 
         public Shelter(string data)
         {
             string[] splitData = data.Split(';');
-            shelterId = int.Parse(splitData[0]);
-            shelterName = splitData[1];
-            shelterAddress = splitData[2];
-            annualBudget = int.Parse(splitData[3]);
+            ShelterId = int.Parse(splitData[0]);
+            ShelterName = splitData[1];
+            ShelterAddress = splitData[2];
+            AnnualBudget = int.Parse(splitData[3]);
         }
     }
 }

@@ -7,36 +7,36 @@ namespace N3U1P9_HFT_2022231.Models
     public class ShelterWorker
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int workerId { get; set; }
+        public int WorkerId { get; set; }
 
         [Required, StringLength(30)]
-        public string workerName { get; set; }
+        public string WorkerName { get; set; }
 
         [Required, StringLength(30)]
-        public string workerOccupation { get; set; }
+        public string WorkerOccupation { get; set; }
 
         [Required, Range(1, 20)]
-        public int workerAge { get; set; }
+        public int WorkerAge { get; set; }
 
         [Required, DataType(nameof(DateTime))]
-        public DateTime startDate;
+        public DateTime HireDate;
 
         [Required, ForeignKey(nameof(Shelter))]
-        public int shelterId { get; set; }
+        public int ShelterId { get; set; }
 
-        public virtual Shelter shelter { get; private set; }
+        public virtual Shelter Shelter { get; private set; }
 
         public ShelterWorker() { }
 
         public ShelterWorker(string data)
         {
             string[] splitData = data.Split(';');
-            workerId = int.Parse(splitData[0]);
-            workerName = splitData[1];
-            workerOccupation = splitData[2];
-            workerAge = int.Parse(splitData[3]);
-            startDate = DateTime.Parse(splitData[4]);
-            shelterId = int.Parse(splitData[5]);
+            WorkerId = int.Parse(splitData[0]);
+            WorkerName = splitData[1];
+            WorkerOccupation = splitData[2];
+            WorkerAge = int.Parse(splitData[3]);
+            HireDate = DateTime.Parse(splitData[4]);
+            ShelterId = int.Parse(splitData[5]);
         }
     }
 }
