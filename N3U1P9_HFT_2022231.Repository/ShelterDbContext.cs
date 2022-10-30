@@ -29,27 +29,27 @@ namespace N3U1P9_HFT_2022231.Repository
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Shelter>()
-                .HasMany(x => x.animals)
-                .WithOne(x => x.shelter)
-                .HasForeignKey(x => x.shelterId)
+                .HasMany(x => x.Animals)
+                .WithOne(x => x.Shelter)
+                .HasForeignKey(x => x.ShelterId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Shelter>()
-                .HasMany(x => x.workers)
-                .WithOne(x => x.shelter)
-                .HasForeignKey(x => x.shelterId)
+                .HasMany(x => x.Workers)
+                .WithOne(x => x.Shelter)
+                .HasForeignKey(x => x.ShelterId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Animal>()
-                .HasOne(x => x.shelter)
-                .WithMany(x => x.animals)
-                .HasForeignKey(x => x.shelterId)
+                .HasOne(x => x.Shelter)
+                .WithMany(x => x.Animals)
+                .HasForeignKey(x => x.ShelterId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<ShelterWorker>()
-                .HasOne(x => x.shelter)
-                .WithMany(x => x.workers)
-                .HasForeignKey(x => x.shelterId)
+                .HasOne(x => x.Shelter)
+                .WithMany(x => x.Workers)
+                .HasForeignKey(x => x.ShelterId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Shelter>().HasData(new Shelter[] {
