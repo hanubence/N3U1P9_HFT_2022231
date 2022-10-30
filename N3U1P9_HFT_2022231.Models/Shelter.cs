@@ -31,6 +31,9 @@ namespace N3U1P9_HFT_2022231.Models
             ShelterName = splitData[1];
             ShelterAddress = splitData[2];
             AnnualBudget = int.Parse(splitData[3]);
+
+            Animals = new HashSet<Animal>();
+            Workers = new HashSet<ShelterWorker>();
         }
     }
 }
