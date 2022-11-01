@@ -5,6 +5,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="ShelterDB.mdf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="ShelterDB.mdf">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\N3U1P9_HFT_2022231.Models\N3U1P9_HFT_2022231.Models.csproj" />
 	</ItemGroup>
 

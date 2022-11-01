@@ -22,8 +22,9 @@ namespace N3U1P9_HFT_2022231.Repository
             {
                 string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ShelterDB.mdf;Integrated Security=True;MultipleActiveResultSets = true";
 
-                builder.UseSqlServer(conn)
-                    .UseLazyLoadingProxies();
+                builder
+                .UseSqlServer(conn)
+                .UseLazyLoadingProxies();
             }
         }
 
@@ -54,15 +55,23 @@ namespace N3U1P9_HFT_2022231.Repository
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Shelter>().HasData(new Shelter[] {
-                //fill with data
+                new Shelter("1;Teszt Menhely;2111 Teszt utca 2;3000000"),
+                new Shelter("2;Cica Menhely;2112 Cica utca 2;4000000"),
+                new Shelter("3;Kutya Menhely;2113 Kutya utca 2;5000000")
             });
 
             builder.Entity<Animal>().HasData(new Animal[] {
-                //fill with data
+                new Animal("1;Morzsi;3;3"),
+                new Animal("2;Pöttyös;4;1"),
+                new Animal("3;Béla;1;1"),
+                new Animal("4;Jani;5;2")
             });
 
             builder.Entity<ShelterWorker>().HasData(new ShelterWorker[] {
-                //fill with data
+                new ShelterWorker("1;B József;Állatorvos;43;2022-10-13;3"),
+                new ShelterWorker("2;H Hanna;Adminisztráció;27;2022-7-8;1"),
+                new ShelterWorker("3;Ádám;Állatorvos;32;2021-1-5;2"),
+                new ShelterWorker("4;István;Gondozó;23;2022-5-12;2")
             });
         }
     }
