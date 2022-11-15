@@ -20,10 +20,8 @@ namespace N3U1P9_HFT_2022231.Repository
         {
             if (!builder.IsConfigured)
             {
-                string conn = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ShelterDB.mdf;Integrated Security=True;MultipleActiveResultSets = true";
-
                 builder
-                .UseSqlServer(conn)
+                .UseInMemoryDatabase("shelter_database")
                 .UseLazyLoadingProxies();
             }
         }
