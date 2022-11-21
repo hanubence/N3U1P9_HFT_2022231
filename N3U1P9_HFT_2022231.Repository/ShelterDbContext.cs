@@ -59,10 +59,10 @@ namespace N3U1P9_HFT_2022231.Repository
             });
 
             builder.Entity<Animal>().HasData(new Animal[] {
-                new Animal("1;Morzsi;3;3"),
-                new Animal("2;Pöttyös;4;1"),
-                new Animal("3;Béla;1;1"),
-                new Animal("4;Jani;5;2")
+                new Animal("1;Morzsi;Kutya;3;3"),
+                new Animal("2;Pöttyös;Kutya;4;1"),
+                new Animal("3;Béla;Macska;1;1"),
+                new Animal("4;Jani;Hörcsög;5;2")
             });
 
             builder.Entity<ShelterWorker>().HasData(new ShelterWorker[] {
