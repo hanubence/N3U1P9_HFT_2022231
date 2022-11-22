@@ -77,12 +77,12 @@ namespace N3U1P9_HFT_2022231.Logic
                 };
 
                 info.Occupations = (from worker in shelter.Workers
-                                group worker by worker.Occupation into g
-                                select new OccupationCount
-                                {
-                                    Name = g.Key,
-                                    Count = g.Count()
-                                });
+                                    group worker by worker.Occupation into g
+                                    select new OccupationCount
+                                    {
+                                        Name = g.Key,
+                                        Count = g.Count()
+                                    });
 
                 list.Add(info);
             }
