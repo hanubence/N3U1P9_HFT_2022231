@@ -23,10 +23,7 @@ namespace N3U1P9_HFT_2022231.Models
 
         public virtual Shelter Shelter { get; private set; }
 
-        public Animal()
-        {
-            Shelter = new Shelter();
-        }
+        public Animal() { }
 
         public Animal(string data)
         {
@@ -36,8 +33,6 @@ namespace N3U1P9_HFT_2022231.Models
             Species = splitData[2];
             Age = int.Parse(splitData[3]);
             ShelterId = int.Parse(splitData[4]);
-
-            Shelter = new Shelter();
         }
     }
 }

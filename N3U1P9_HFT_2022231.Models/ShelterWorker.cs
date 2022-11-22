@@ -29,10 +29,7 @@ namespace N3U1P9_HFT_2022231.Models
 
         public virtual Shelter Shelter { get; private set; }
 
-        public ShelterWorker()
-        {
-            Shelter = new Shelter();
-        }
+        public ShelterWorker() { }
 
         public ShelterWorker(string data)
         {
@@ -44,8 +41,6 @@ namespace N3U1P9_HFT_2022231.Models
             HireDate = DateTime.Parse(splitData[4]);
             Salary = int.Parse(splitData[5]);
             ShelterId = int.Parse(splitData[6]);
-
-            Shelter = new Shelter();
         }
     }
 }
