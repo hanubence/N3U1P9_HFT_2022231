@@ -12,10 +12,10 @@ namespace N3U1P9_HFT_2022231.Models
         [Required, StringLength(30)]
         public string AnimalName { get; set; }
 
-        [Required, StringLength(20)]
+        [StringLength(20)]
         public string AnimalType { get; set; }
 
-        [Required, Range(1,20)]
+        [Range(1,20)]
         public int AnimalAge { get; set; }
 
         [Required, ForeignKey(nameof(Shelter))]

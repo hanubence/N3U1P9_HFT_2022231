@@ -12,13 +12,13 @@ namespace N3U1P9_HFT_2022231.Models
         [Required, StringLength(30)]
         public string WorkerName { get; set; }
 
-        [Required, StringLength(30)]
+        [StringLength(30)]
         public string WorkerOccupation { get; set; }
 
-        [Required, Range(1, 20)]
+        [Range(1, 20)]
         public int WorkerAge { get; set; }
 
-        [Required, DataType(nameof(DateTime))]
+        [DataType(nameof(DateTime))]
         public DateTime HireDate;
 
         [Required, ForeignKey(nameof(Shelter))]

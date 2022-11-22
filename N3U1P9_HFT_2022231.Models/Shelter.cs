@@ -16,10 +16,10 @@ namespace N3U1P9_HFT_2022231.Models
         [Required, StringLength(40)]
         public string ShelterName { get; set; }
 
-        [Required, StringLength(40)]
+        [StringLength(40)]
         public string ShelterAddress { get; set; }
 
-        [Required, Range(0,100000000)]
+        [Range(0,100000000)]
         public int AnnualBudget { get; set; }
 
         public Shelter() { }
