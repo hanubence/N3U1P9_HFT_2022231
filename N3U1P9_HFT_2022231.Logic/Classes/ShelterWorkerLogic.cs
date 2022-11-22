@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using N3U1P9_HFT_2022231.Repository;
 using N3U1P9_HFT_2022231.Models;
 
-namespace N3U1P9_HFT_2022231.Logic.Classes
+namespace N3U1P9_HFT_2022231.Logic
 {
     public class ShelterWorkerLogic : IShelterWorkerLogic
     {
