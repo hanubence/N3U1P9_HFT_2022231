@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using N3U1P9_HFT_2022231.Models;
 using N3U1P9_HFT_2022231.Repository;
@@ -8,9 +9,13 @@ namespace N3U1P9_HFT_2022231.Logic
     public class ShelterLogic : IShelterLogic
     {
         IRepository<Shelter> Repository;
-        public ShelterLogic(IRepository<Shelter> repository)
+        IRepository<Animal> AnimalRepository;
+        IRepository<ShelterWorker> WorkerRepository;
+        public ShelterLogic(IRepository<Shelter> repository, IRepository<Animal> animalrepository, IRepository<ShelterWorker> workerrepository)
         {
             Repository = repository;
+            AnimalRepository = animalrepository;
+            WorkerRepository = workerrepository;
         }
 
         public void Create(Shelter item)
@@ -42,5 +47,26 @@ namespace N3U1P9_HFT_2022231.Logic
         {
             return Repository.ReadAll().Average(t => t.AnnualBudget);
         }
+
+        public IEnumerable<WorkerInfo> GetWorkersByOccupation()
+        {
+            var shelters = Repository.ReadAll();
+            return from shelter in shelters
+                   join worker in WorkerRepository.ReadAll() on shelter.ShelterId equals worker.ShelterId
+                   group worker by new { worker.ShelterId, worker.Occupation } into g
+                   select new WorkerInfo
+                   {
+                       ShelterName = shelters.First(t => t.ShelterId == g.Key.ShelterId).Name,
+                       Occupation = g.Key.Occupation,
+                       WorkerNames = g.Select(t => t.Name)
+                   };
+        }
+    }
+
+    public class WorkerInfo
+    {
+        public string ShelterName { get; set; }
+        public string Occupation { get; set; }
+        public IEnumerable<string> WorkerNames { get; set; }
     }
 }
