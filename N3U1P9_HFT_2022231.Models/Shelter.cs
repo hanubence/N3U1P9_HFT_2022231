@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace N3U1P9_HFT_2022231.Models
 {
@@ -10,7 +11,9 @@ namespace N3U1P9_HFT_2022231.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ShelterId { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Animal> Animals { get; set; }
+        [JsonIgnore]
         public virtual ICollection<ShelterWorker> Workers { get; set; }
 
         [Required, StringLength(40)]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace N3U1P9_HFT_2022231.Models
 {
@@ -21,6 +22,7 @@ namespace N3U1P9_HFT_2022231.Models
         [Required, ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }
 
+        [JsonIgnore]
         public virtual Shelter Shelter { get; private set; }
 
         public Animal() { }
