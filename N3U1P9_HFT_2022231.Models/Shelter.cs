@@ -22,7 +22,11 @@ namespace N3U1P9_HFT_2022231.Models
         [Range(0,100000000)]
         public int AnnualBudget { get; set; }
 
-        public Shelter() { }
+        public Shelter()
+        {
+            Animals = new HashSet<Animal>();
+            Workers = new HashSet<ShelterWorker>();
+        }
 
         public Shelter(string data)
         {

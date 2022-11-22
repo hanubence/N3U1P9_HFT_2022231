@@ -10,13 +10,13 @@ namespace N3U1P9_HFT_2022231.Models
         public int AnimalId { get; set; }
 
         [Required, StringLength(30)]
-        public string AnimalName { get; set; }
+        public string Name { get; set; }
 
         [StringLength(20)]
-        public string AnimalType { get; set; }
+        public string Species { get; set; }
 
         [Range(1,20)]
-        public int AnimalAge { get; set; }
+        public int Age { get; set; }
 
         [Required, ForeignKey(nameof(Shelter))]
         public int ShelterId { get; set; }
@@ -25,17 +25,19 @@ namespace N3U1P9_HFT_2022231.Models
 
         public Animal()
         {
-
+            Shelter = new Shelter();
         }
 
         public Animal(string data)
         {
             string[] splitData = data.Split(';');
             AnimalId = int.Parse(splitData[0]);
-            AnimalName = splitData[1];
-            AnimalType = splitData[2];
-            AnimalAge = int.Parse(splitData[3]);
+            Name = splitData[1];
+            Species = splitData[2];
+            Age = int.Parse(splitData[3]);
             ShelterId = int.Parse(splitData[4]);
+
+            Shelter = new Shelter();
         }
     }
 }
