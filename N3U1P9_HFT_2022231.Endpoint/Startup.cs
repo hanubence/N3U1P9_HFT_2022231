@@ -7,33 +7,61 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using N3U1P9_HFT_2022231.Models;
+using N3U1P9_HFT_2022231.Repository;
+using N3U1P9_HFT_2022231.Logic;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace N3U1P9_HFT_2022231.Endpoint
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ShelterDbContext>();
+
+            services.AddTransient<IRepository<Shelter>, ShelterRepository>();
+            services.AddTransient<IRepository<Animal>, AnimalRepository>();
+            services.AddTransient<IRepository<ShelterWorker>, ShelterWorkerRepository>();
+
+            services.AddTransient<IShelterLogic, ShelterLogic>();
+            services.AddTransient<IAnimalLogic, AnimalLogic>();
+            services.AddTransient<IShelterWorkerLogic, ShelterWorkerLogic>();
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shelter.Endpoint", Version = "v1" });
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shelter.Endpoint v1"));
             }
+
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerPathFeature>()
+                    .Error;
+                var response = new { Msg = exception.Message };
+                await context.Response.WriteAsJsonAsync(response);
+            }));
+
 
             app.UseRouting();
 
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
         }
     }
