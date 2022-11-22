@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using N3U1P9_HFT_2022231.Models;
 
-namespace N3U1P9_HFT_2022231.Repository.Repositories
+namespace N3U1P9_HFT_2022231.Repository
 {
-    internal class AnimalRepository : Repository<Animal>, IRepository<Animal>
+    public class AnimalRepository : Repository<Animal>, IRepository<Animal>
     {
         public AnimalRepository(ShelterDbContext ctx) : base(ctx) { }
 

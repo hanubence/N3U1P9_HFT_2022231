@@ -66,10 +66,10 @@ namespace N3U1P9_HFT_2022231.Repository
             });
 
             builder.Entity<ShelterWorker>().HasData(new ShelterWorker[] {
-                new ShelterWorker("1;B József;Állatorvos;43;2022-10-13;3"),
-                new ShelterWorker("2;H Hanna;Adminisztráció;27;2022-7-8;1"),
-                new ShelterWorker("3;Ádám;Állatorvos;32;2021-1-5;2"),
-                new ShelterWorker("4;István;Gondozó;23;2022-5-12;2")
+                new ShelterWorker("1;B József;Állatorvos;43;2022-10-13;1200000;3"),
+                new ShelterWorker("2;H Hanna;Adminisztráció;27;2022-7-8;500000;1"),
+                new ShelterWorker("3;Ádám;Állatorvos;32;2021-1-5;1000000;2"),
+                new ShelterWorker("4;István;Gondozó;23;2022-5-12;340000;2")
             });
         }
     }
