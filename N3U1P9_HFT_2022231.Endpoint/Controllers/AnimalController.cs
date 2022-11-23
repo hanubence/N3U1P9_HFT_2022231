@@ -3,8 +3,6 @@ using N3U1P9_HFT_2022231.Logic;
 using N3U1P9_HFT_2022231.Models;
 using System.Collections.Generic;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace N3U1P9_HFT_2022231.Endpoint.Controllers
 {
     [Route("[controller]")]
