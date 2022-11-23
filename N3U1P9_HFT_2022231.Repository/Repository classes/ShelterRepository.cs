@@ -21,7 +21,7 @@ namespace N3U1P9_HFT_2022231.Repository
             var o = Read(item.ShelterId);
             foreach (var prop in o.GetType().GetProperties())
             {
-                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null && prop != null)
                 {
                     prop.SetValue(o, prop.GetValue(item));
                 }
