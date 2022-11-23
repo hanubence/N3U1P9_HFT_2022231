@@ -34,8 +34,8 @@ namespace N3U1P9_HFT_2022231.Endpoint.Controllers
             this.logic.Create(value);
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Animal value)
+        [HttpPut]
+        public void Put([FromBody] Animal value)
         {
             this.logic.Update(value);
         }
