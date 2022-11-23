@@ -21,7 +21,10 @@ namespace N3U1P9_HFT_2022231.Repository
             var o = Read(item.AnimalId);
             foreach (var prop in o.GetType().GetProperties())
             {
-                prop.SetValue(o, prop.GetValue(item));
+                if (prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    prop.SetValue(o, prop.GetValue(item));
+                }
             }
 
             ctx.SaveChanges();
