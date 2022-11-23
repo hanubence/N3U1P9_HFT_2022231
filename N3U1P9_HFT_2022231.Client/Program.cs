@@ -43,6 +43,7 @@ namespace N3U1P9_HFT_2022231.Client
                     Console.WriteLine("[Not Required] Species of the new animal: ");
                     animal.Species = Console.ReadLine();
 
+                    Rest.Post<Animal>(animal, "Animal");
                     break;
                 case "ShelterWorker":
                     ShelterWorker worker = new ShelterWorker();
@@ -67,7 +68,7 @@ namespace N3U1P9_HFT_2022231.Client
                     if (DateTime.TryParse(Console.ReadLine(), out date)) worker.HireDate = date;
                     else worker.HireDate = DateTime.Now;
 
-                    Console.WriteLine();
+                    Rest.Post<ShelterWorker>(worker, "ShelterWorker");
                     break;
             }
         }
@@ -97,8 +98,6 @@ namespace N3U1P9_HFT_2022231.Client
                         Console.WriteLine($"{worker.WorkerId}: {worker.Name} [{worker.Occupation}]");
                     }
                     break;
-                default:
-                    break;
             }
             Console.ReadLine();
         }
@@ -108,12 +107,91 @@ namespace N3U1P9_HFT_2022231.Client
             switch (entity)
             {
                 case "Shelter":
+                    Console.WriteLine("Enter ID of which shelter to update: ");
+                    int shelterid = int.Parse(Console.ReadLine());
+
+                    Shelter shelter = Rest.Get<Shelter>(shelterid, "Shelter");
+
+                    Console.WriteLine($"New name of the shelter: [Current: {shelter.Name}]");
+                    string shelterUpdate;
+                    shelterUpdate = Console.ReadLine();
+                    shelter.Name = shelterUpdate != shelter.Name ? shelterUpdate : shelter.Name;
+
+                    Console.WriteLine($"New address of the shelter: [Current: {shelter.Address}]");
+                    shelterUpdate = Console.ReadLine();
+                    shelter.Address = shelterUpdate != shelter.Address ? shelterUpdate : shelter.Address;
+
+                    Console.WriteLine($"New annual budget of the shelter: [Current: {shelter.AnnualBudget}]");
+                    int newBudget = NumCheck(Console.ReadLine());
+                    shelter.AnnualBudget = newBudget != shelter.AnnualBudget ? newBudget : shelter.AnnualBudget;
+
+                    Rest.Put(shelter, "Shelter");
+
                     break;
+
                 case "Animal":
+                    Console.WriteLine("Enter ID of which animal to update: ");
+                    int animalid = int.Parse(Console.ReadLine());
+
+                    Animal animal = Rest.Get<Animal>(animalid, "Animal");
+
+                    Console.WriteLine($"New Shelter ID of the animal: [Current: {animal.ShelterId}]");
+                    int newAnimal = NumCheck(Console.ReadLine());
+                    animal.ShelterId = newAnimal != animal.ShelterId ? newAnimal : animal.ShelterId;
+
+                    Console.WriteLine($"New name of the animal: [Current: {animal.Name}]");
+                    string animalUpdate;
+                    animalUpdate = Console.ReadLine();
+                    animal.Name = animalUpdate != animal.Name ? animalUpdate : animal.Name;
+
+                    Console.WriteLine($"New species of the animal: [Current: {animal.Species}]");
+                    animalUpdate = Console.ReadLine();
+                    animal.Species = animalUpdate != animal.Species ? animalUpdate : animal.Species;
+
+                    Console.WriteLine($"New age of the animal: [Current: {animal.Age}]");
+                    newAnimal = NumCheck(Console.ReadLine());
+                    animal.Age = newAnimal != animal.Age ? newAnimal : animal.Age;
+
+                    Rest.Put(animal, "Animal");
+
                     break;
+
                 case "ShelterWorker":
-                    break;
-                default:
+                    Console.WriteLine("Enter ID of which worker to update: ");
+                    int workerid = int.Parse(Console.ReadLine());
+
+                    ShelterWorker worker = Rest.Get<ShelterWorker>(workerid, "ShelterWorker");
+
+                    Console.WriteLine($"New name of the worker: [Current: {worker.Name}]");
+                    string workerUpdate;
+                    workerUpdate = Console.ReadLine();
+                    worker.Name = workerUpdate != worker.Name ? workerUpdate : worker.Name;
+
+                    Console.WriteLine($"New Shelter ID of the worker: [Current: {worker.ShelterId}]");
+                    int newWorker = NumCheck(Console.ReadLine());
+                    worker.ShelterId = newWorker != worker.ShelterId ? newWorker : worker.ShelterId;
+
+                    Console.WriteLine($"New age of the worker: [Current: {worker.Age}]");
+                    newWorker = NumCheck(Console.ReadLine());
+                    worker.Age = newWorker != worker.Age ? newWorker : worker.Age;
+
+                    Console.WriteLine($"New salary of the worker: [Current: {worker.Salary}]");
+                    newWorker = NumCheck(Console.ReadLine());
+                    worker.Salary = newWorker != worker.Salary ? newWorker : worker.Salary;
+
+                    Console.WriteLine($"New occupation of the worker: [Current: {worker.Occupation}]");
+                    workerUpdate = Console.ReadLine();
+                    worker.Occupation = workerUpdate != worker.Occupation ? workerUpdate : worker.Occupation;
+
+                    Console.WriteLine($"New hire date of the worker: [Current: {worker.HireDate}]");
+                    DateTime date;
+                    if (DateTime.TryParse(Console.ReadLine(), out date))
+                    {
+                        if (date != worker.HireDate) worker.HireDate = date;
+                    }
+
+                    Rest.Put(worker, "ShelterWorker");
+
                     break;
             }
         }
@@ -137,8 +215,6 @@ namespace N3U1P9_HFT_2022231.Client
                     Console.WriteLine("ID to delete:");
                     id = int.Parse(Console.ReadLine());
                     Rest.Delete(id, "ShelterWorker");
-                    break;
-                default:
                     break;
             }
         }
