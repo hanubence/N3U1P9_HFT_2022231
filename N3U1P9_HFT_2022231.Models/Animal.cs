@@ -27,14 +27,5 @@ namespace N3U1P9_HFT_2022231.Models
 
         public Animal() { }
 
-        public Animal(string data)
-        {
-            string[] splitData = data.Split(';');
-            AnimalId = int.Parse(splitData[0]);
-            Name = splitData[1];
-            Species = splitData[2];
-            Age = int.Parse(splitData[3]);
-            ShelterId = int.Parse(splitData[4]);
-        }
     }
 }

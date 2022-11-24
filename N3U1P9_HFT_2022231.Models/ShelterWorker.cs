@@ -33,16 +33,5 @@ namespace N3U1P9_HFT_2022231.Models
 
         public ShelterWorker() { }
 
-        public ShelterWorker(string data)
-        {
-            string[] splitData = data.Split(';');
-            WorkerId = int.Parse(splitData[0]);
-            Name = splitData[1];
-            Occupation = splitData[2];
-            Age = int.Parse(splitData[3]);
-            HireDate = DateTime.Parse(splitData[4]);
-            Salary = int.Parse(splitData[5]);
-            ShelterId = int.Parse(splitData[6]);
-        }
     }
 }

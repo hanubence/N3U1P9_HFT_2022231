@@ -31,16 +31,5 @@ namespace N3U1P9_HFT_2022231.Models
             Workers = new HashSet<ShelterWorker>();
         }
 
-        public Shelter(string data)
-        {
-            string[] splitData = data.Split(';');
-            ShelterId = int.Parse(splitData[0]);
-            Name = splitData[1];
-            Address = splitData[2];
-            AnnualBudget = int.Parse(splitData[3]);
-
-            Animals = new HashSet<Animal>();
-            Workers = new HashSet<ShelterWorker>();
-        }
     }
 }
