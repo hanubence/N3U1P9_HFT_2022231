@@ -167,7 +167,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Ramona Finley",
         Age = 53,
         Occupation = "Caretaker",
-        HireDate = GetDate("2023-09-05"),
         Salary = 974485,
         ShelterId = 8
     },
@@ -177,7 +176,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Fleur Lloyd",
         Age = 59,
         Occupation = "Caretaker",
-        HireDate = GetDate("2023-02-07"),
         Salary = 838951,
         ShelterId = 7
     },
@@ -187,7 +185,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Rae Owen",
         Age = 32,
         Occupation = "Caretaker",
-        HireDate = GetDate("2022-04-15"),
         Salary = 717054,
         ShelterId = 10
     },
@@ -197,7 +194,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Hiram Wright",
         Age = 35,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-06-04"),
         Salary = 327110,
         ShelterId = 2
     },
@@ -207,7 +203,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Rhea Casey",
         Age = 21,
         Occupation = "Caretaker",
-        HireDate = GetDate("2022-12-05"),
         Salary = 604499,
         ShelterId = 2
     },
@@ -217,7 +212,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Caleb Wolfe",
         Age = 43,
         Occupation = "Administration",
-        HireDate = GetDate("2022-06-17"),
         Salary = 322198,
         ShelterId = 5
     },
@@ -227,7 +221,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Lance Fowler",
         Age = 62,
         Occupation = "Administration",
-        HireDate = GetDate("2023-02-18"),
         Salary = 648840,
         ShelterId = 3
     },
@@ -237,7 +230,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Vivien Barr",
         Age = 58,
         Occupation = "Administration",
-        HireDate = GetDate("2023-09-09"),
         Salary = 1047944,
         ShelterId = 5
     },
@@ -247,7 +239,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Jessamine Adams",
         Age = 59,
         Occupation = "Administration",
-        HireDate = GetDate("2023-07-04"),
         Salary = 580633,
         ShelterId = 8
     },
@@ -257,7 +248,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Destiny Buckley",
         Age = 58,
         Occupation = "Administration",
-        HireDate = GetDate("2022-10-06"),
         Salary = 963575,
         ShelterId = 6
     },
@@ -267,7 +257,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Gary Velasquez",
         Age = 59,
         Occupation = "Administration",
-        HireDate = GetDate("2023-06-13"),
         Salary = 613648,
         ShelterId = 3
     },
@@ -277,7 +266,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Ciaran Mitchell",
         Age = 44,
         Occupation = "Administration",
-        HireDate = GetDate("2022-05-20"),
         Salary = 1145435,
         ShelterId = 6
     },
@@ -287,7 +275,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Chadwick Collier",
         Age = 41,
         Occupation = "Administration",
-        HireDate = GetDate("2023-02-16"),
         Salary = 437200,
         ShelterId = 10
     },
@@ -297,7 +284,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Darryl Pollard",
         Age = 20,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2023-04-15"),
         Salary = 525223,
         ShelterId = 1
     },
@@ -307,7 +293,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Cedric Blevins",
         Age = 63,
         Occupation = "Caretaker",
-        HireDate = GetDate("2022-02-11"),
         Salary = 1078317,
         ShelterId = 7
     },
@@ -317,7 +302,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Nasim Reilly",
         Age = 44,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2023-02-10"),
         Salary = 367248,
         ShelterId = 2
     },
@@ -327,7 +311,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Noel Rutledge",
         Age = 59,
         Occupation = "Caretaker",
-        HireDate = GetDate("2022-12-17"),
         Salary = 665719,
         ShelterId = 9
     },
@@ -337,7 +320,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Dominic Shaw",
         Age = 61,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2022-12-02"),
         Salary = 706852,
         ShelterId = 3
     },
@@ -347,7 +329,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Baxter Rivers",
         Age = 20,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-08-19"),
         Salary = 611259,
         ShelterId = 5
     },
@@ -357,7 +338,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Porter Moreno",
         Age = 41,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2022-07-15"),
         Salary = 916006,
         ShelterId = 3
     },
@@ -367,7 +347,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Eve Browning",
         Age = 41,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2023-05-20"),
         Salary = 1093016,
         ShelterId = 8
     },
@@ -377,7 +356,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Stephanie Roy",
         Age = 44,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2023-09-09"),
         Salary = 638491,
         ShelterId = 2
     },
@@ -387,7 +365,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Quinn Morse",
         Age = 34,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2022-03-16"),
         Salary = 319376,
         ShelterId = 2
     },
@@ -397,7 +374,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Bevis Flynn",
         Age = 21,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2022-12-28"),
         Salary = 318252,
         ShelterId = 3
     },
@@ -407,7 +383,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Abra Sawyer",
         Age = 57,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2023-03-12"),
         Salary = 1193808,
         ShelterId = 2
     },
@@ -417,7 +392,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Aidan Rich",
         Age = 19,
         Occupation = "Administration",
-        HireDate = GetDate("2022-10-06"),
         Salary = 1134965,
         ShelterId = 2
     },
@@ -427,7 +401,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "August English",
         Age = 39,
         Occupation = "Administration",
-        HireDate = GetDate("2022-11-28"),
         Salary = 880254,
         ShelterId = 2
     },
@@ -437,7 +410,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Azalia Mercado",
         Age = 28,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-11-04"),
         Salary = 961280,
         ShelterId = 9
     },
@@ -447,7 +419,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Kevyn Webster",
         Age = 37,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2023-02-13"),
         Salary = 262004,
         ShelterId = 3
     },
@@ -457,7 +428,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Gillian Crawford",
         Age = 34,
         Occupation = "Administration",
-        HireDate = GetDate("2022-01-11"),
         Salary = 934079,
         ShelterId = 7
     },
@@ -467,7 +437,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Barry Phelps",
         Age = 34,
         Occupation = "Caretaker",
-        HireDate = GetDate("2022-03-11"),
         Salary = 1011357,
         ShelterId = 10
     },
@@ -477,7 +446,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Amity Shepard",
         Age = 25,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2023-01-19"),
         Salary = 753697,
         ShelterId = 9
     },
@@ -487,7 +455,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Drake Parrish",
         Age = 22,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-08-05"),
         Salary = 451124,
         ShelterId = 7
     },
@@ -497,7 +464,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Neil Donaldson",
         Age = 37,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2022-07-10"),
         Salary = 574744,
         ShelterId = 6
     },
@@ -507,7 +473,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Breanna Roach",
         Age = 25,
         Occupation = "Administration",
-        HireDate = GetDate("2022-08-01"),
         Salary = 267398,
         ShelterId = 2
     },
@@ -517,7 +482,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Neville Daniel",
         Age = 49,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-07-09"),
         Salary = 411362,
         ShelterId = 9
     },
@@ -527,7 +491,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Daryl Porter",
         Age = 57,
         Occupation = "Administration",
-        HireDate = GetDate("2023-05-15"),
         Salary = 344633,
         ShelterId = 9
     },
@@ -537,7 +500,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Hakeem Hanson",
         Age = 45,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2021-12-06"),
         Salary = 938026,
         ShelterId = 4
     },
@@ -547,7 +509,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Astra Mckinney",
         Age = 52,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2021-12-13"),
         Salary = 332178,
         ShelterId = 7
     },
@@ -557,7 +518,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Blaze Rowe",
         Age = 23,
         Occupation = "Administration",
-        HireDate = GetDate("2023-05-15"),
         Salary = 1124352,
         ShelterId = 6
     },
@@ -567,7 +527,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Delilah Kennedy",
         Age = 24,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2023-06-23"),
         Salary = 879199,
         ShelterId = 7
     },
@@ -577,7 +536,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Nolan Calderon",
         Age = 37,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-11-05"),
         Salary = 910532,
         ShelterId = 9
     },
@@ -587,7 +545,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Simone Maldonado",
         Age = 57,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-12-06"),
         Salary = 393045,
         ShelterId = 3
     },
@@ -597,7 +554,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Barrett Small",
         Age = 41,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-10-04"),
         Salary = 754860,
         ShelterId = 6
     },
@@ -607,7 +563,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Paula Johns",
         Age = 49,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2022-06-16"),
         Salary = 1059384,
         ShelterId = 6
     },
@@ -617,7 +572,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Adele Sawyer",
         Age = 46,
         Occupation = "Administration",
-        HireDate = GetDate("2023-01-08"),
         Salary = 426426,
         ShelterId = 4
     },
@@ -627,7 +581,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Upton Robinson",
         Age = 41,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2022-02-21"),
         Salary = 1183059,
         ShelterId = 9
     },
@@ -637,7 +590,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Whilemina Parks",
         Age = 44,
         Occupation = "Veterinarian",
-        HireDate = GetDate("2022-12-25"),
         Salary = 527594,
         ShelterId = 3
     },
@@ -647,7 +599,6 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Sylvia Glenn",
         Age = 30,
         Occupation = "Vet Assistant",
-        HireDate = GetDate("2023-05-25"),
         Salary = 1001325,
         ShelterId = 7
     },
@@ -657,25 +608,10 @@ namespace N3U1P9_HFT_2022231.Repository
         Name = "Wade Todd",
         Age = 25,
         Occupation = "Caretaker",
-        HireDate = GetDate("2023-01-04"),
         Salary = 467798,
         ShelterId = 10
     }
-});
-        }
-
-        private static DateTime GetDate(string date)
-        {
-            DateTime Date;
-            if (DateTime.TryParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out Date))
-            {
-                return Date;
-            }
-            else
-            {
-                return DateTime.Now;
-            }
-
+    });
         }
     }
 }

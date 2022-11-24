@@ -24,7 +24,7 @@ namespace N3U1P9_HFT_2022231.Client
                     shelter.Address = Console.ReadLine();
 
                     Console.WriteLine("[Not Required] Annual budget of the new shelter: ");
-                    shelter.AnnualBudget = NumCheck(Console.ReadLine());
+                    shelter.AnnualBudget = NumberCheck(Console.ReadLine());
 
                     Rest.Post<Shelter>(shelter, "Shelter");
                     break;
@@ -35,10 +35,10 @@ namespace N3U1P9_HFT_2022231.Client
                     animal.Name = Console.ReadLine();
 
                     Console.WriteLine("[Required] ID of the shelter where the new animal lives at: ");
-                    animal.ShelterId = NumCheck(Console.ReadLine());
+                    animal.ShelterId = NumberCheck(Console.ReadLine());
 
                     Console.WriteLine("[Not Required] Age of the new animal: ");
-                    animal.Age = NumCheck(Console.ReadLine());
+                    animal.Age = NumberCheck(Console.ReadLine());
 
                     Console.WriteLine("[Not Required] Species of the new animal: ");
                     animal.Species = Console.ReadLine();
@@ -52,21 +52,16 @@ namespace N3U1P9_HFT_2022231.Client
                     worker.Name = Console.ReadLine();
 
                     Console.WriteLine("[Required] ID of the shelter where the new worker works at: ");
-                    worker.ShelterId = NumCheck(Console.ReadLine());
+                    worker.ShelterId = NumberCheck(Console.ReadLine());
 
                     Console.WriteLine("[Not Required] Age of the new worker: ");
-                    worker.Age = NumCheck(Console.ReadLine());
+                    worker.Age = NumberCheck(Console.ReadLine());
 
                     Console.WriteLine("[Not Required] Salary of the new worker: ");
-                    worker.Salary = NumCheck(Console.ReadLine());
+                    worker.Salary = NumberCheck(Console.ReadLine());
 
                     Console.WriteLine("[Not Required] Occupation of the new worker: ");
                     worker.Occupation = Console.ReadLine();
-
-                    Console.WriteLine("[Not Required] Hire data of the new worker: (Empty = Now)");
-                    DateTime date;
-                    if (DateTime.TryParse(Console.ReadLine(), out date)) worker.HireDate = date;
-                    else worker.HireDate = DateTime.Now;
 
                     Rest.Post<ShelterWorker>(worker, "ShelterWorker");
                     break;
@@ -113,17 +108,13 @@ namespace N3U1P9_HFT_2022231.Client
                     Shelter shelter = Rest.Get<Shelter>(shelterid, "Shelter");
 
                     Console.WriteLine($"New name of the shelter: [Current: {shelter.Name}]");
-                    string shelterUpdate;
-                    shelterUpdate = Console.ReadLine();
-                    shelter.Name = shelterUpdate != shelter.Name ? shelterUpdate : shelter.Name;
+                    shelter.Name = StringUpdate(Console.ReadLine(), shelter.Name);
 
                     Console.WriteLine($"New address of the shelter: [Current: {shelter.Address}]");
-                    shelterUpdate = Console.ReadLine();
-                    shelter.Address = shelterUpdate != shelter.Address ? shelterUpdate : shelter.Address;
+                    shelter.Address = StringUpdate(Console.ReadLine(), shelter.Address);
 
                     Console.WriteLine($"New annual budget of the shelter: [Current: {shelter.AnnualBudget}]");
-                    int newBudget = NumCheck(Console.ReadLine());
-                    shelter.AnnualBudget = newBudget != shelter.AnnualBudget ? newBudget : shelter.AnnualBudget;
+                    shelter.AnnualBudget = NumberUpdate(Console.ReadLine(), shelter.AnnualBudget);
 
                     Rest.Put(shelter, "Shelter");
 
@@ -136,21 +127,16 @@ namespace N3U1P9_HFT_2022231.Client
                     Animal animal = Rest.Get<Animal>(animalid, "Animal");
 
                     Console.WriteLine($"New Shelter ID of the animal: [Current: {animal.ShelterId}]");
-                    int newAnimal = NumCheck(Console.ReadLine());
-                    animal.ShelterId = newAnimal != animal.ShelterId ? newAnimal : animal.ShelterId;
+                    animal.ShelterId = NumberUpdate(Console.ReadLine(), animal.ShelterId);
 
                     Console.WriteLine($"New name of the animal: [Current: {animal.Name}]");
-                    string animalUpdate;
-                    animalUpdate = Console.ReadLine();
-                    animal.Name = animalUpdate != animal.Name ? animalUpdate : animal.Name;
+                    animal.Name = StringUpdate(Console.ReadLine(), animal.Name);
 
                     Console.WriteLine($"New species of the animal: [Current: {animal.Species}]");
-                    animalUpdate = Console.ReadLine();
-                    animal.Species = animalUpdate != animal.Species ? animalUpdate : animal.Species;
+                    animal.Species = StringUpdate(Console.ReadLine(), animal.Species);
 
                     Console.WriteLine($"New age of the animal: [Current: {animal.Age}]");
-                    newAnimal = NumCheck(Console.ReadLine());
-                    animal.Age = newAnimal != animal.Age ? newAnimal : animal.Age;
+                    animal.Age = NumberUpdate(Console.ReadLine(), animal.Age);
 
                     Rest.Put(animal, "Animal");
 
@@ -163,32 +149,19 @@ namespace N3U1P9_HFT_2022231.Client
                     ShelterWorker worker = Rest.Get<ShelterWorker>(workerid, "ShelterWorker");
 
                     Console.WriteLine($"New name of the worker: [Current: {worker.Name}]");
-                    string workerUpdate;
-                    workerUpdate = Console.ReadLine();
-                    worker.Name = workerUpdate != worker.Name ? workerUpdate : worker.Name;
+                    worker.Name = StringUpdate(Console.ReadLine(), worker.Name);
 
                     Console.WriteLine($"New Shelter ID of the worker: [Current: {worker.ShelterId}]");
-                    int newWorker = NumCheck(Console.ReadLine());
-                    worker.ShelterId = newWorker != worker.ShelterId ? newWorker : worker.ShelterId;
+                    worker.ShelterId = NumberUpdate(Console.ReadLine(), worker.ShelterId);
 
                     Console.WriteLine($"New age of the worker: [Current: {worker.Age}]");
-                    newWorker = NumCheck(Console.ReadLine());
-                    worker.Age = newWorker != worker.Age ? newWorker : worker.Age;
+                    worker.Age = NumberUpdate(Console.ReadLine(), worker.Age);
 
                     Console.WriteLine($"New salary of the worker: [Current: {worker.Salary}]");
-                    newWorker = NumCheck(Console.ReadLine());
-                    worker.Salary = newWorker != worker.Salary ? newWorker : worker.Salary;
+                    worker.Salary = NumberUpdate(Console.ReadLine(), worker.Salary);
 
                     Console.WriteLine($"New occupation of the worker: [Current: {worker.Occupation}]");
-                    workerUpdate = Console.ReadLine();
-                    worker.Occupation = workerUpdate != worker.Occupation ? workerUpdate : worker.Occupation;
-
-                    Console.WriteLine($"New hire date of the worker: [Current: {worker.HireDate}]");
-                    DateTime date;
-                    if (DateTime.TryParse(Console.ReadLine(), out date))
-                    {
-                        if (date != worker.HireDate) worker.HireDate = date;
-                    }
+                    worker.Occupation = StringUpdate(Console.ReadLine(), worker.Occupation);
 
                     Rest.Put(worker, "ShelterWorker");
 
@@ -219,12 +192,26 @@ namespace N3U1P9_HFT_2022231.Client
             }
         }
 
-        static int NumCheck(string n)
+        static int NumberCheck(string num)
         {
             int number;
-            bool isNumber = int.TryParse(n, out number);
+            bool isNumber = int.TryParse(num, out number);
 
-            return isNumber ? number : 0;
+            if (isNumber) return number;
+            else return 0;
+        } 
+        static string StringUpdate(string newData, string OldData)
+        {
+            if (newData != "" && newData != OldData) return newData;
+            else return OldData;
+        }
+        static int NumberUpdate(string newData, int OldData)
+        {
+            int number;
+            bool isNumber = int.TryParse(newData, out number);
+
+            if (isNumber && number != OldData) return number;
+            else return OldData;
         }
 
         static void Main(string[] args)
