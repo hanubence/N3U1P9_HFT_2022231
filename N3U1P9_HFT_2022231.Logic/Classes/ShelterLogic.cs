@@ -20,6 +20,7 @@ namespace N3U1P9_HFT_2022231.Logic
 
         public void Create(Shelter item)
         {
+            if (item.Name.Length < 5 || item.Name.Length > 40) throw new ArgumentException("Name is either too short or too long (5-40)");
             Repository.Create(item);
         }
 
@@ -30,7 +31,9 @@ namespace N3U1P9_HFT_2022231.Logic
 
         public Shelter Read(int id)
         {
-            return Repository.Read(id);
+            Shelter item = Repository.Read(id);
+            if (item == null) throw new ArgumentException("No animal exists with the given ID");
+            return item;
         }
 
         public IQueryable<Shelter> ReadAll()
