@@ -103,6 +103,22 @@ namespace N3U1P9_HFT_2022231.Client
             return item;
         }
 
+        public T GetNonCrud<T>(string endpoint, string method)
+        {
+            T item = default(T);
+            HttpResponseMessage response = client.GetAsync(endpoint + "/" + method).GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                item = response.Content.ReadAsAsync<T>().GetAwaiter().GetResult();
+            }
+            else
+            {
+                var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();
+                throw new ArgumentException(error.Msg);
+            }
+            return item;
+        }
+
         public void Post<T>(T item, string endpoint)
         {
             HttpResponseMessage response =

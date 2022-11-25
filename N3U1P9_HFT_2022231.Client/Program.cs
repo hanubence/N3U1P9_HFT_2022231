@@ -67,7 +67,6 @@ namespace N3U1P9_HFT_2022231.Client
                     break;
             }
         }
-        
         static void List(string entity)
         {
             switch (entity)
@@ -96,7 +95,12 @@ namespace N3U1P9_HFT_2022231.Client
             }
             Console.ReadLine();
         }
-
+        static void ListStatistics(string endpoint)
+        {
+            var res = Rest.GetNonCrud<double>($"Stats", endpoint);
+            Console.WriteLine($"Average annual budget of all shelters: {res}");
+            Console.ReadLine();
+        }
         static void Update(string entity)
         {
             switch (entity)
@@ -168,7 +172,6 @@ namespace N3U1P9_HFT_2022231.Client
                     break;
             }
         }
-
         static void Delete(string entity)
         {
             int id;
@@ -191,7 +194,6 @@ namespace N3U1P9_HFT_2022231.Client
                     break;
             }
         }
-
         static int NumberCheck(string num)
         {
             int number;
@@ -239,10 +241,15 @@ namespace N3U1P9_HFT_2022231.Client
                 .Add("Update", () => Update("ShelterWorker"))
                 .Add("Exit", ConsoleMenu.Close);
 
+            var StatsSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("Average annual budget per shelter", () => ListStatistics("GetAverageBudget"))
+                .Add("Exit", ConsoleMenu.Close);
+
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Shelters", () => ShelterSubMenu.Show())
                 .Add("Animals", () => AnimalSubMenu.Show())
                 .Add("Shelter Workers", () => ShelterWorkerSubMenu.Show())
+                .Add("Statistics", () => StatsSubMenu.Show())
                 .Add("Exit", ConsoleMenu.Close);
 
             menu.Show();
