@@ -54,9 +54,10 @@ namespace N3U1P9_HFT_2022231.Logic
         //Átlagfizetés menhelyenként
         public IEnumerable<ShelterSalaryInfo> GetAverageSalaryByShelter()
         {
-            var shelters = Repository.ReadAll();
+            var shelters = Repository.ReadAll().ToList();
+            var workers = WorkerRepository.ReadAll().ToList();
             return from shelter in shelters
-                   join worker in WorkerRepository.ReadAll() on shelter.ShelterId equals worker.ShelterId
+                   join worker in workers on shelter.ShelterId equals worker.ShelterId
                    group worker by worker.ShelterId into grp
                    select new ShelterSalaryInfo
                    {
@@ -124,9 +125,10 @@ namespace N3U1P9_HFT_2022231.Logic
         //Állatok átlag életkora menhelyenként
         public IEnumerable<AnimalAgeInfo> GetAverageAnimalAgeByShelter()
         {
-            var shelters = Repository.ReadAll();
+            var shelters = Repository.ReadAll().ToList();
+            var animals = AnimalRepository.ReadAll().ToList();
             return from shelter in shelters
-                   join animal in AnimalRepository.ReadAll() on shelter.ShelterId equals animal.ShelterId
+                   join animal in animals on shelter.ShelterId equals animal.ShelterId
                    group animal by animal.ShelterId into grp
                    select new AnimalAgeInfo
                    {
@@ -136,6 +138,8 @@ namespace N3U1P9_HFT_2022231.Logic
         }
     }
 
+
+    //Helper classes for non-crud methods
     public class ShelterSalaryInfo
     {
         public string ShelterName { get; set; }
