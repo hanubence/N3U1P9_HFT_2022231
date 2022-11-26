@@ -97,8 +97,30 @@ namespace N3U1P9_HFT_2022231.Client
         }
         static void ListStatistics(string endpoint)
         {
-            var res = Rest.GetNonCrud<double>($"Stats", endpoint);
-            Console.WriteLine($"Average annual budget of all shelters: {res}");
+            dynamic res = Rest.GetNonCrud<dynamic>($"Stats", endpoint);
+            if (endpoint == "GetAverageBudget") Console.WriteLine($"Average annual budget of all shelters: {res}");
+            else if (endpoint == "GetAverageSalaryByShelter")
+            {
+                foreach (var item in res)
+                {
+                    Console.WriteLine($"Shelter name: {item.shelterName}\t -- Average salary: {item.averageSalary}");
+                }
+            }
+            else if (endpoint == "GetWorkerOccupationCountByShelter")
+            {
+                foreach (var item in res)
+                {
+                    Console.WriteLine($"Shelter: {item.shelterName}");
+
+                    foreach (var occ in item.occupations)
+                    {
+                        Console.WriteLine($"{occ.name}: {occ.count}");
+                    }
+
+                    Console.WriteLine();
+                }
+            }
+            
             Console.ReadLine();
         }
         static void Update(string entity)
@@ -194,6 +216,8 @@ namespace N3U1P9_HFT_2022231.Client
                     break;
             }
         }
+
+        //Helper classes for correcting data input
         static int NumberCheck(string num)
         {
             int number;
@@ -243,6 +267,10 @@ namespace N3U1P9_HFT_2022231.Client
 
             var StatsSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("Average annual budget per shelter", () => ListStatistics("GetAverageBudget"))
+                .Add("Average salary of all workers per shelter", () => ListStatistics("GetAverageSalaryByShelter"))
+                .Add("Number of workers having each occupation, per shelter", () => ListStatistics("GetWorkerOccupationCountByShelter"))
+                .Add("Number of each specie per shelter", () => ListStatistics("GetAnimalSpeciesCountByShelter"))
+                .Add("Average age of the animals per shelter", () => ListStatistics("GetAverageAnimalAgeByShelter"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
