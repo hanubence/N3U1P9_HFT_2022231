@@ -119,8 +119,33 @@ namespace N3U1P9_HFT_2022231.Client
 
                     Console.WriteLine();
                 }
+            } else if (endpoint == "GetAnimalSpeciesCountByShelter")
+            {
+                foreach (var item in res)
+                {
+                    Console.WriteLine($"Shelter: {item.shelterName}");
+
+                    foreach (var s in item.species)
+                    {
+                        Console.WriteLine($"{s.name}: {s.count}");
+                    }
+
+                    Console.WriteLine();
+                }
+            } else if (endpoint == "GetAverageAnimalAgeByShelter")
+            {
+                foreach (var item in res)
+                {
+                    Console.WriteLine($"Shelter: {item.shelterName} Average age of animals: {item.average}");
+                }
+            } else if (endpoint == "GetAverageWorkerAgeByShelter")
+            {
+                foreach (var item in res)
+                {
+                    Console.WriteLine($"Shelter: {item.shelterName} Average age of workers: {item.average}");
+                }
             }
-            
+
             Console.ReadLine();
         }
         static void Update(string entity)
@@ -217,7 +242,7 @@ namespace N3U1P9_HFT_2022231.Client
             }
         }
 
-        //Helper classes for correcting data input
+        //Helper methods for correcting data input
         static int NumberCheck(string num)
         {
             int number;
@@ -271,6 +296,7 @@ namespace N3U1P9_HFT_2022231.Client
                 .Add("Number of workers having each occupation, per shelter", () => ListStatistics("GetWorkerOccupationCountByShelter"))
                 .Add("Number of each specie per shelter", () => ListStatistics("GetAnimalSpeciesCountByShelter"))
                 .Add("Average age of the animals per shelter", () => ListStatistics("GetAverageAnimalAgeByShelter"))
+                .Add("Average age of the employess per shelter", () => ListStatistics("GetAverageWorkerAgeByShelter"))
                 .Add("Exit", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
