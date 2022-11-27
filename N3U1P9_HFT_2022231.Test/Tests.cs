@@ -13,6 +13,8 @@ namespace N3U1P9_HFT_2022231.Test
     public class Tests
     {
         ShelterLogic sl;
+        AnimalLogic al;
+        ShelterWorkerLogic wl;
         Mock<IRepository<Shelter>> mockShelterRepo;
         Mock<IRepository<Animal>> mockAnimalRepo;
         Mock<IRepository<ShelterWorker>> mockWorkerRepo;
@@ -87,10 +89,95 @@ namespace N3U1P9_HFT_2022231.Test
             mockWorkerRepo.Setup(t => t.ReadAll()).Returns(workers1.Concat(workers2));
 
             sl = new ShelterLogic(mockShelterRepo.Object, mockWorkerRepo.Object, mockAnimalRepo.Object);
+            al = new AnimalLogic(mockAnimalRepo.Object);
+            wl = new ShelterWorkerLogic(mockWorkerRepo.Object);
         }
 
 
-        //NON CRUD TESTS
+        //CREATE TESTS -------------------------------------------------
+
+        //SHELTER
+        [Test]
+        public void CreateShelterCorrectlyTest()
+        {
+            var s = new Shelter { Name = "Test Shelter" };
+
+            sl.Create(s);
+
+            mockShelterRepo.Verify(r => r.Create(s), Times.Once());
+        }
+
+        [Test]
+        public void CreateShelterIncorrectlyTest()
+        {
+            var s = new Shelter { Name = "3" };
+            try
+            {
+                sl.Create(s);
+            }
+            catch { }
+            
+            mockShelterRepo.Verify(r => r.Create(s), Times.Never());
+        }
+
+        //ANIMAL
+        [Test]
+        public void CreatAnimalCorrectlyTest()
+        {
+            var a = new Animal { Name = "Test Animal", Age = 5, ShelterId = 1, Species = "Dog" };
+
+            try
+            {
+                al.Create(a);
+            } catch { }
+
+            mockAnimalRepo.Verify(r => r.Create(a), Times.Once());
+        }
+
+        [Test]
+        public void CreatAnimalIncorrectlyTest()
+        {
+            var a = new Animal { Name = "Test Animal", Age = -10, ShelterId = 1, Species = "Dog" };
+
+            try
+            {
+                al.Create(a);
+            }
+            catch { }
+
+            mockAnimalRepo.Verify(r => r.Create(a), Times.Never());
+        }
+
+        //WORKER
+        [Test]
+        public void CreatWorkerCorrectlyTest()
+        {
+            var a = new ShelterWorker { Name = "Test Person", ShelterId = 3 };
+
+            try
+            {
+                wl.Create(a);
+            }
+            catch { }
+
+            mockWorkerRepo.Verify(r => r.Create(a), Times.Once());
+        }
+
+        [Test]
+        public void CreatWorkerIncorrectlyTest()
+        {
+            var a = new ShelterWorker { Name = "Bad", ShelterId = 3 };
+
+            try
+            {
+                wl.Create(a);
+            }
+            catch { }
+
+            mockWorkerRepo.Verify(r => r.Create(a), Times.Never());
+        }
+
+        //NON CRUD TESTS -----------------------------------------------
         [Test]
         public void AverageAnnualBudgetTest()
         {
