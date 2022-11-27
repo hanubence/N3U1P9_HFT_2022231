@@ -26,6 +26,14 @@ namespace N3U1P9_HFT_2022231.Logic
 
         public void Delete(int id)
         {
+            try
+            {
+                var item = Repository.Read(id);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("No shelter exists with the given ID");
+            }
             Repository.Delete(id);
         }
 
