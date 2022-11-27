@@ -103,7 +103,7 @@ namespace N3U1P9_HFT_2022231.Client
             {
                 foreach (var item in res)
                 {
-                    Console.WriteLine($"Shelter name: {item.shelterName}\t -- Average salary: {item.averageSalary}");
+                    Console.WriteLine($"Shelter name: {item.shelterName}\tAverage salary: {item.averageSalary}");
                 }
             }
             else if (endpoint == "GetWorkerOccupationCountByShelter")
