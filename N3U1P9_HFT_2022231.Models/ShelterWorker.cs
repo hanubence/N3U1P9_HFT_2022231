@@ -26,7 +26,7 @@ namespace N3U1P9_HFT_2022231.Models
         public int ShelterId { get; set; }
 
         [JsonIgnore]
-        public virtual Shelter Shelter { get; private set; }
+        public virtual Shelter Shelter { get; set; }
 
         public ShelterWorker() { }
 

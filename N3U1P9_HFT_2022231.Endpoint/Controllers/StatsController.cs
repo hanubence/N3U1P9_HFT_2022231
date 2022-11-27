@@ -39,7 +39,7 @@ namespace N3U1P9_HFT_2022231.Endpoint.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<AnimalAgeInfo> GetAverageAnimalAgeByShelter()
+        public IEnumerable<AgeInfo> GetAverageAnimalAgeByShelter()
         {
             return this.logic.GetAverageAnimalAgeByShelter();
         }

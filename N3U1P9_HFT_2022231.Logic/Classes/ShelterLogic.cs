@@ -62,7 +62,7 @@ namespace N3U1P9_HFT_2022231.Logic
                    select new ShelterSalaryInfo
                    {
                        ShelterName = shelters.First(t => t.ShelterId == grp.Key).Name,
-                       AverageSalary = grp.Average(t => t.Salary)
+                       AverageSalary = (int) grp.Average(t => t.Salary)
                    };
         }
 
@@ -123,14 +123,29 @@ namespace N3U1P9_HFT_2022231.Logic
         }
 
         //Állatok átlag életkora menhelyenként
-        public IEnumerable<AnimalAgeInfo> GetAverageAnimalAgeByShelter()
+        public IEnumerable<AgeInfo> GetAverageAnimalAgeByShelter()
         {
             var shelters = Repository.ReadAll().ToList();
             var animals = AnimalRepository.ReadAll().ToList();
             return from shelter in shelters
                    join animal in animals on shelter.ShelterId equals animal.ShelterId
                    group animal by animal.ShelterId into grp
-                   select new AnimalAgeInfo
+                   select new AgeInfo
+                   {
+                       ShelterName = shelters.First(t => t.ShelterId == grp.Key).Name,
+                       Average = grp.Average(t => t.Age)
+                   };
+        }
+
+        //Dolgozók átlag életkora menhelyenként
+        public IEnumerable<AgeInfo> GetAverageWorkerAgeByShelter()
+        {
+            var shelters = Repository.ReadAll().ToList();
+            var workers = WorkerRepository.ReadAll().ToList();
+            return from shelter in shelters
+                   join worker in workers on shelter.ShelterId equals worker.ShelterId
+                   group worker by worker.ShelterId into grp
+                   select new AgeInfo
                    {
                        ShelterName = shelters.First(t => t.ShelterId == grp.Key).Name,
                        Average = grp.Average(t => t.Age)
@@ -143,34 +158,84 @@ namespace N3U1P9_HFT_2022231.Logic
     public class ShelterSalaryInfo
     {
         public string ShelterName { get; set; }
-        public double AverageSalary { get; set; }
+        public int AverageSalary { get; set; }
     }
     
     public class WorkerOccupationInfo
     {
         public string ShelterName { get; set; }
         public IEnumerable<OccupationCount> Occupations { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            WorkerOccupationInfo w = (obj as WorkerOccupationInfo);
+            if (w == null) return false;
+
+            return (this.ShelterName == w.ShelterName) && (this.Occupations == w.Occupations);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.ShelterName, this.Occupations);
+        }
     }
 
     public class OccupationCount
     {
         public string Name { get; set; }
         public int Count { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            OccupationCount o = (obj as OccupationCount);
+            if (o == null) return false;
+
+            return (this.Name == o.Name && this.Count == o.Count);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.Count);
+        }
     }
 
     public class AnimalSpecieInfo
     {
         public string ShelterName { get; set; }
         public IEnumerable<SpecieCount> Species { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            AnimalSpecieInfo a = (obj as AnimalSpecieInfo);
+            if (a == null) return false;
+            return (this.ShelterName == a.ShelterName && this.Species == a.Species);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.ShelterName, this.Species);
+        }
     }
 
     public class SpecieCount
     {
         public string Name { get; set; }
         public int Count { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            SpecieCount s = (obj as SpecieCount);
+            if (s == null) return false;
+            return (s.Name == this.Name && s.Count == this.Count);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name, this.Count);
+        }
     }
 
-    public class AnimalAgeInfo
+    public class AgeInfo
     {
         public string ShelterName { get; set; }
         public double Average { get; set; }

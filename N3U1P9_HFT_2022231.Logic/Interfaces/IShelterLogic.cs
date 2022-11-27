@@ -9,7 +9,8 @@ namespace N3U1P9_HFT_2022231.Logic
         void Create(Shelter item);
         void Delete(int id);
         IEnumerable<AnimalSpecieInfo> GetAnimalSpeciesCountByShelter();
-        IEnumerable<AnimalAgeInfo> GetAverageAnimalAgeByShelter();
+        IEnumerable<AgeInfo> GetAverageAnimalAgeByShelter();
+        IEnumerable<AgeInfo> GetAverageWorkerAgeByShelter();
         double? GetAverageBudget();
         IEnumerable<ShelterSalaryInfo> GetAverageSalaryByShelter();
         IEnumerable<WorkerOccupationInfo> GetWorkerOccupationCountByShelter();
