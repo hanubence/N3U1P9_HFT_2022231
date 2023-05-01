@@ -3,15 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using N3U1P9_HFT_2022231.Models;
 using N3U1P9_HFT_2022231.Repository;
 using N3U1P9_HFT_2022231.Logic;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Diagnostics;
+using N3U1P9_HFT_2022231.Endpoint.Services;
 
 namespace N3U1P9_HFT_2022231.Endpoint
 {
@@ -29,11 +26,14 @@ namespace N3U1P9_HFT_2022231.Endpoint
             services.AddTransient<IAnimalLogic, AnimalLogic>();
             services.AddTransient<IShelterWorkerLogic, ShelterWorkerLogic>();
 
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shelter.Endpoint", Version = "v1" });
             });
+
+            services.AddSignalR();
+
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -62,6 +62,7 @@ namespace N3U1P9_HFT_2022231.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

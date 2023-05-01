@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using N3U1P9_HFT_2022231.Endpoint.Services;
 using N3U1P9_HFT_2022231.Logic;
 using N3U1P9_HFT_2022231.Models;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
 namespace N3U1P9_HFT_2022231.Endpoint.Controllers
@@ -10,10 +13,12 @@ namespace N3U1P9_HFT_2022231.Endpoint.Controllers
     public class AnimalController : ControllerBase
     {
         IAnimalLogic logic;
+        IHubContext<SignalRHub> hub;
 
-        public AnimalController(IAnimalLogic logic)
+        public AnimalController(IAnimalLogic logic, IHubContext<SignalRHub> hub)
         {
             this.logic = logic;
+            this.hub = hub;
         }
 
         [HttpGet]
@@ -32,18 +37,21 @@ namespace N3U1P9_HFT_2022231.Endpoint.Controllers
         public void Post([FromBody] Animal value)
         {
             this.logic.Create(value);
+            this.hub.Clients.All.SendAsync("AnimalCreated", value);
         }
 
         [HttpPut]
         public void Put([FromBody] Animal value)
         {
             this.logic.Update(value);
+            this.hub.Clients.All.SendAsync("AnimalUpdated", value);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
             this.logic.Delete(id);
+            this.hub.Clients.All.SendAsync("AnimalDeleted", id);
         }
     }
 }
