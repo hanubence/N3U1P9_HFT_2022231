@@ -59,6 +59,12 @@ namespace N3U1P9_HFT_2022231.Endpoint
 
             app.UseAuthorization();
 
+            app.UseCors(x => x
+                .AllowCredentials()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("http://localhost:13000"));
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
