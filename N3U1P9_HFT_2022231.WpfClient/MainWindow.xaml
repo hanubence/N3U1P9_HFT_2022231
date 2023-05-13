@@ -4,9 +4,63 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:N3U1P9_HFT_2022231.WpfClient"
+        xmlns:vm="clr-namespace:N3U1P9_HFT_2022231.WpfClient.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainWindowViewModel>
+    </Window.DataContext>
+        
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Shelters}">
+            <ListBox.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding ShelterId}"/>
+                        <Label ContentStringFormat=" {0}: " Content="{Binding Name}"/>
+                        <Label Content="{Binding Address}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding CurrentAnimals}">
+            <ListBox.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Name}"/>
+                        <Label ContentStringFormat="Age: {0}" Content="{Binding Age}"/>
+                        <Label Content="{Binding Species}"/>
+                        <Label ContentStringFormat="Shelter (ID): {0}" Content="{Binding ShelterId}"/>
+                        <Label ContentStringFormat="ID: {0}" Content="{Binding AnimalId}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding CurrentShelterWorkers}">
+            <ListBox.ItemTemplate >
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Name}"/>
+                        <Label ContentStringFormat="Age: {0}" Content="{Binding Age}"/>
+                        <Label Content="{Binding Occupation}"/>
+                        <Label ContentStringFormat="Shelter (ID): {0}" Content="{Binding ShelterId}"/>
+                        <Label ContentStringFormat="ID: {0}" Content="{Binding WorkerId}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

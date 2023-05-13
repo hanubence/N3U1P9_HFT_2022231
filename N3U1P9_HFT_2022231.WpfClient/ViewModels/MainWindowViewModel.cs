@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using N3U1P9_HFT_2022231.Models;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
 {
@@ -49,6 +50,13 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             set { selectedShelter = value; }
         }
 
+        private BindingList<ShelterWorker> currentShelterWorkers;
+        public BindingList<ShelterWorker> CurrentShelterWorkers
+        {
+            get { return currentShelterWorkers; }
+            set { currentShelterWorkers = new BindingList<ShelterWorker>(ShelterWorkers.Where(x => x.ShelterId == selectedShelter.ShelterId).ToList()); }
+        }
+
         private ShelterWorker selectedWorker;
         public ShelterWorker SelectedWorker
         {
@@ -56,8 +64,15 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             set { selectedWorker = value; }
         }
 
-        private Animal selectedAnimal;
+        private BindingList<Animal> currentAnimals;
+        public BindingList<Animal> CurrentAnimals
+        {
+            get { return currentAnimals; }
+            set { currentAnimals = new BindingList<Animal>(Animals.Where(x => x.ShelterId == selectedShelter.ShelterId).ToList()); }
+        }
 
+
+        private Animal selectedAnimal;
         public Animal SelectedAnimal
         {
             get { return selectedAnimal; }
@@ -82,7 +97,9 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
         {
             Shelters = new RestCollection<Shelter>("http://localhost:5000", "Shelter", "hub");
             ShelterWorkers = new RestCollection<ShelterWorker>("http://localhost:5000", "ShelterWorker", "hub");
-            Animals = new RestCollection<Animal>("http://localhost:5000", "Anial", "hub");
+            Animals = new RestCollection<Animal>("http://localhost:5000", "Animal", "hub");
+
+
         }
 
     }
