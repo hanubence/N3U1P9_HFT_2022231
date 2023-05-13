@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using N3U1P9_HFT_2022231.Models;
 using System.Windows.Input;
 using System.ComponentModel;
+using N3U1P9_HFT_2022231.WpfClient.Services;
 
 namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
 {
@@ -99,7 +100,36 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             ShelterWorkers = new RestCollection<ShelterWorker>("http://localhost:5000", "ShelterWorker", "hub");
             Animals = new RestCollection<Animal>("http://localhost:5000", "Animal", "hub");
 
+            ShelterEditorService ShelterEditor = new ShelterEditorService();
+            ShelterWorkerEditorService WorkerEditor = new ShelterWorkerEditorService();
+            AnimalEditorService AnimalEditor = new AnimalEditorService();
 
+            //Shelter Commands
+
+            CreateShelterCommand = new RelayCommand(() =>
+            {
+                Shelter NewShelter = new Shelter() { Name = "" };
+                Shelters.Add(NewShelter);
+                ShelterEditor.Edit(NewShelter);
+            }, () => true);
+
+            //ShelterWorker Commands
+
+            CreateShelterCommand = new RelayCommand(() =>
+            {
+                ShelterWorker NewWorker = new ShelterWorker() { ShelterId = SelectedShelter.ShelterId, Name = "" };
+                ShelterWorkers.Add(NewWorker);
+                WorkerEditor.Edit(NewWorker);
+            }, () => true);
+
+            //Animal Commands
+
+            CreateShelterCommand = new RelayCommand(() =>
+            {
+                ShelterWorker NewWorker = new ShelterWorker() { ShelterId = SelectedShelter.ShelterId, Name = "" };
+                ShelterWorkers.Add(NewWorker);
+                WorkerEditor.Edit(NewWorker);
+            }, () => true);
         }
 
     }
