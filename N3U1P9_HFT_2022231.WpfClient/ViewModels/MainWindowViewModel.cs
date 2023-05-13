@@ -3,12 +3,87 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using 
+using N3U1P9_HFT_2022231.WpfClient;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using N3U1P9_HFT_2022231.Models;
+using System.Windows.Input;
 
 namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : ObservableRecipient
     {
-        public RestColl
+        private RestCollection<Shelter> shelters;
+        public RestCollection<Shelter> Shelters
+        {
+            get { return shelters; }
+            set
+            {
+                if (shelters != value) shelters = value;
+            }
+        }
+
+        private RestCollection<ShelterWorker> shelterWorkers;
+        public RestCollection<ShelterWorker> ShelterWorkers
+        {
+            get { return shelterWorkers; }
+            set
+            {
+                if (shelterWorkers != value) shelterWorkers = value;
+            }
+        }
+
+        private RestCollection<Animal> animals;
+        public RestCollection<Animal> Animals
+        {
+            get { return animals; }
+            set { if (animals != value) animals = value; }
+        }
+
+        //------------------------
+
+        private Shelter selectedShelter;
+        public Shelter SelectedShelter
+        {
+            get { return selectedShelter; }
+            set { selectedShelter = value; }
+        }
+
+        private ShelterWorker selectedWorker;
+        public ShelterWorker SelectedWorker
+        {
+            get { return selectedWorker; }
+            set { selectedWorker = value; }
+        }
+
+        private Animal selectedAnimal;
+
+        public Animal SelectedAnimal
+        {
+            get { return selectedAnimal; }
+            set { selectedAnimal = value; }
+        }
+
+        //Commands
+
+        public ICommand CreateShelterCommand { get; set; }
+        public ICommand UpdateShelterCommand { get; set; }
+        public ICommand DeleteShelterCommand { get; set; }
+
+        public ICommand CreateAnimalCommand { get; set; }
+        public ICommand UpdateAnimalCommand { get; set; }
+        public ICommand DeleteAnimalCommand { get; set; }
+
+        public ICommand CreateShelterWorkerCommand { get; set; }
+        public ICommand UpdateShelterWorkerCommand { get; set; }
+        public ICommand DeleteShelterWorkerCommand { get; set; }
+
+        public MainWindowViewModel()
+        {
+            Shelters = new RestCollection<Shelter>("http://localhost:5000", "Shelter", "hub");
+            ShelterWorkers = new RestCollection<ShelterWorker>("http://localhost:5000", "ShelterWorker", "hub");
+            Animals = new RestCollection<Animal>("http://localhost:5000", "Anial", "hub");
+        }
+
     }
 }
