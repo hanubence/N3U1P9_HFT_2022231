@@ -17,7 +17,7 @@ namespace N3U1P9_HFT_2022231.WpfClient
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "shelter")
+        public RestService(string baseurl, string pingableEndpoint = "Shelter")
         {
             bool isOk = false;
             do
