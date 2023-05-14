@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:N3U1P9_HFT_2022231.WpfClient.Windows"
         mc:Ignorable="d"
-        Title="ShelterWorkerEditorWindow" Height="450" Width="800">
-    <Grid>
+        Title="Edit Worker" Height="300" Width="400">
+    <Grid VerticalAlignment="Stretch" Margin="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Actual.Name}"/>
         
+        <Label Grid.Row="1" Grid.Column="0" Content="Occupation:"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Actual.Occupation}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Age:"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Actual.Age}"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Salary:"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Actual.Salary}"/>
+
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Click="Button_Click" Content="Ok"/>
     </Grid>
 </Window>

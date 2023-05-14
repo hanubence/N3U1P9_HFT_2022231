@@ -9,6 +9,6 @@ namespace N3U1P9_HFT_2022231.WpfClient.Services
 {
     public interface IEditorService<T>
     {
-        void Edit(T t);
+        public bool Edit(T t);
     }
 }

@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:N3U1P9_HFT_2022231.WpfClient.Windows"
         mc:Ignorable="d"
-        Title="ShelterEditorWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Edit Shelter" Height="250" Width="400">
+    <Grid VerticalAlignment="Stretch" Margin="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Name: "/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Actual.Name}"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Address: "/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Actual.Address}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Annual Budget"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Actual.AnnualBudget}"/>
+
+        <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Click="Button_Click" Content="Ok"/>
     </Grid>
 </Window>

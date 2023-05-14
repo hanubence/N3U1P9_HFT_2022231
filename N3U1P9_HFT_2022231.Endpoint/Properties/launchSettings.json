@@ -18,7 +18,7 @@
     },
     "N3U1P9_HFT_2022231.Endpoint": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

@@ -28,5 +28,11 @@ namespace N3U1P9_HFT_2022231.WpfClient.Windows
             ViewModel.Setup(worker);
             this.DataContext = ViewModel;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
+        }
     }
 }

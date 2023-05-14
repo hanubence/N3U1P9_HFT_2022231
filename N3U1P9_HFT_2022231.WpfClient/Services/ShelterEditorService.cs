@@ -10,9 +10,13 @@ namespace N3U1P9_HFT_2022231.WpfClient.Services
 {
     public class ShelterEditorService : IEditorService<Shelter>
     {
-        public void Edit(Shelter shelter)
+        public bool Edit(Shelter shelter)
         {
-            new ShelterEditorWindow(shelter).ShowDialog();
+            ShelterEditorWindow Editor = new ShelterEditorWindow(shelter);
+
+            bool? Result = Editor.ShowDialog();
+            if (Result.HasValue && Result.Value) return true;
+            return false;
         }
     }
 }

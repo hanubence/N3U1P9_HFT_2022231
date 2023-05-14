@@ -16,15 +16,15 @@ namespace N3U1P9_HFT_2022231.Endpoint
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ShelterDbContext>();
+            services.AddSingleton<ShelterDbContext>();
 
-            services.AddTransient<IRepository<Shelter>, ShelterRepository>();
-            services.AddTransient<IRepository<Animal>, AnimalRepository>();
-            services.AddTransient<IRepository<ShelterWorker>, ShelterWorkerRepository>();
+            services.AddSingleton<IRepository<Shelter>, ShelterRepository>();
+            services.AddSingleton<IRepository<Animal>, AnimalRepository>();
+            services.AddSingleton<IRepository<ShelterWorker>, ShelterWorkerRepository>();
 
-            services.AddTransient<IShelterLogic, ShelterLogic>();
-            services.AddTransient<IAnimalLogic, AnimalLogic>();
-            services.AddTransient<IShelterWorkerLogic, ShelterWorkerLogic>();
+            services.AddSingleton<IShelterLogic, ShelterLogic>();
+            services.AddSingleton<IAnimalLogic, AnimalLogic>();
+            services.AddSingleton<IShelterWorkerLogic, ShelterWorkerLogic>();
 
             services.AddSwaggerGen(c =>
             {

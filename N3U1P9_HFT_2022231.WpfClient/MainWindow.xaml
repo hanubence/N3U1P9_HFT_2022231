@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:N3U1P9_HFT_2022231.WpfClient"
         xmlns:vm="clr-namespace:N3U1P9_HFT_2022231.WpfClient.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Shelter Manager" Height="450" Width="1500">
     <Window.DataContext>
-        <vm:MainWindowViewModel>
+        <vm:MainWindowViewModel />
     </Window.DataContext>
         
     <Grid>
@@ -23,44 +23,108 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Shelters}">
+        <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Shelters}" SelectedItem="{Binding SelectedShelter}">
             <ListBox.ItemTemplate >
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
                         <Label Content="{Binding ShelterId}"/>
-                        <Label ContentStringFormat=" {0}: " Content="{Binding Name}"/>
+                        <Label Content="{Binding Name}"/>
                         <Label Content="{Binding Address}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding CurrentAnimals}">
+        <ListBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding CurrentShelterWorkers}" SelectedItem="{Binding SelectedWorker}">
             <ListBox.ItemTemplate >
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Name}"/>
-                        <Label ContentStringFormat="Age: {0}" Content="{Binding Age}"/>
-                        <Label Content="{Binding Species}"/>
-                        <Label ContentStringFormat="Shelter (ID): {0}" Content="{Binding ShelterId}"/>
-                        <Label ContentStringFormat="ID: {0}" Content="{Binding AnimalId}"/>
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Content="{Binding Name}"/>
+                            <Label Grid.Row="0" Grid.Column="1" ContentStringFormat="Age: {0}" Content="{Binding Age}"/>
+                            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Occupation}"/>
+                            <Label Grid.Row="2" Grid.Column="0" ContentStringFormat="Shelter ID: {0}" Content="{Binding ShelterId}"/>
+                            <Label Grid.Row="2" Grid.Column="1" ContentStringFormat="Worker ID: {0}" Content="{Binding WorkerId}"/>
+                        </Grid>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding CurrentShelterWorkers}">
+        <ListBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding CurrentAnimals}" SelectedItem="{Binding SelectedAnimal}">
             <ListBox.ItemTemplate >
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Name}"/>
-                        <Label ContentStringFormat="Age: {0}" Content="{Binding Age}"/>
-                        <Label Content="{Binding Occupation}"/>
-                        <Label ContentStringFormat="Shelter (ID): {0}" Content="{Binding ShelterId}"/>
-                        <Label ContentStringFormat="ID: {0}" Content="{Binding WorkerId}"/>
+                    <StackPanel Orientation="Vertical">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" Content="{Binding Name}"/>
+                            <Label Grid.Row="0" Grid.Column="1" ContentStringFormat="Age: {0}" Content="{Binding Age}"/>
+                            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Species}"/>
+                            <Label Grid.Row="2" Grid.Column="0" ContentStringFormat="Shelter (ID): {0}" Content="{Binding ShelterId}"/>
+                            <Label Grid.Row="2" Grid.Column="1" ContentStringFormat="ID: {0}" Content="{Binding AnimalId}"/>
+                        </Grid>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+
+
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" Command="{Binding CreateShelterCommand}" Content="New" HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="1" Command="{Binding UpdateShelterCommand}" Content="Edit" HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="2" Command="{Binding DeleteShelterCommand}" Content="Delete" HorizontalAlignment="Stretch"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Command="{Binding CreateShelterWorkerCommand}" Content="New" HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="1" Command="{Binding UpdateShelterWorkerCommand}" Content="Edit" HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="2" Command="{Binding DeleteShelterWorkerCommand}" Content="Delete" HorizontalAlignment="Stretch"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Command="{Binding CreateAnimalCommand}" Content="New" HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="1" Command="{Binding UpdateAnimalCommand}" Content="Edit" HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="2" Command="{Binding DeleteAnimalCommand}" Content="Delete" HorizontalAlignment="Stretch"/>
+        </Grid>
     </Grid>
 </Window>
