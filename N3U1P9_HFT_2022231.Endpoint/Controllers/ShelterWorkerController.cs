@@ -50,8 +50,9 @@ namespace N3U1P9_HFT_2022231.Endpoint.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var workerToDelete = this.logic.Read(id);
             this.logic.Delete(id);
-            this.hub.Clients.All.SendAsync("ShelterWorkerDeleted", id);
+            this.hub.Clients.All.SendAsync("ShelterWorkerDeleted", workerToDelete);
         }
     }
 }

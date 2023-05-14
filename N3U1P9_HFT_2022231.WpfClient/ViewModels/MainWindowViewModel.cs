@@ -162,6 +162,7 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             DeleteShelterCommand = new RelayCommand(() =>
             {
                 Shelters.Delete(SelectedShelter.ShelterId);
+                SelectedShelter = new Shelter();
             }, () => SelectedShelter != null);
 
             //ShelterWorker Commands
