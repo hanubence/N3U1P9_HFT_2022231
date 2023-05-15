@@ -63,7 +63,7 @@ namespace N3U1P9_HFT_2022231.Endpoint
                 .AllowCredentials()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:13000"));
+                .WithOrigins("http://localhost:60000"));
 
             app.UseEndpoints(endpoints =>
             {
