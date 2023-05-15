@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:N3U1P9_HFT_2022231.WpfClient.Windows"
+        xmlns:validation="clr-namespace:N3U1P9_HFT_2022231.WpfClient.Validation"
         mc:Ignorable="d"
         Title="Edit Worker" Height="300" Width="400">
     <Grid VerticalAlignment="Stretch" Margin="50">
@@ -21,16 +22,32 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Actual.Name}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" MaxLength="30" Text="{Binding Actual.Name}"/>
         
         <Label Grid.Row="1" Grid.Column="0" Content="Occupation:"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Actual.Occupation}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" MaxLength="30" Text="{Binding Actual.Occupation}"/>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Age:"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Actual.Age}"/>
+        <TextBox Grid.Row="2" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Actual.Age">
+                    <Binding.ValidationRules>
+                        <validation:RangeValidationRule MinValue="18" MaxValue="65" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <Label Grid.Row="3" Grid.Column="0" Content="Salary:"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Actual.Salary}"/>
+        <TextBox Grid.Row="3" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Actual.Salary">
+                    <Binding.ValidationRules>
+                        <validation:RangeValidationRule MinValue="0" MaxValue="2000000" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Click="Button_Click" Content="Ok"/>
     </Grid>
