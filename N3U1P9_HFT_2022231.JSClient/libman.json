@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "cdnjs",
+      "library": "htm@3.1.1",
+      "destination": "wwwroot/lib/htm/",
+      "files": [
+        "preact/standalone.module.js"
+      ]
+    }
+  ]
+}
