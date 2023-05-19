@@ -1,3 +1,4 @@
+const baseUrl = "http://localhost:45007";
 let shelters = [];
 let connection = null;
 getdata();
@@ -6,7 +7,7 @@ setupSignalR();
 
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
-        .withUrl("http://localhost:5000/hub")
+        .withUrl(`http://localhost:45007/hub`)
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
@@ -37,7 +38,7 @@ async function start() {
 };
 
 async function getdata() {
-    await fetch('http://localhost:5000/Shelter')
+    await fetch(`${baseUrl}/Shelter`)
         .then(x => x.json())
         .then(y => {
             shelters = y;
@@ -57,7 +58,7 @@ function display() {
 }
 
 function remove(id) {
-    fetch('http://localhost:5000/Shelter/' + id, {
+    fetch(`${baseUrl}/Shelter/` + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
@@ -73,7 +74,7 @@ function remove(id) {
 
 function create() {
     let name = document.getElementById('sheltername').value;
-    fetch('http://localhost:5000/Shelter', {
+    fetch(`${baseUrl}/hub`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(

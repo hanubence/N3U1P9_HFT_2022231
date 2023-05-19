@@ -135,9 +135,9 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
 
         public MainWindowViewModel()
         {
-            Shelters = new RestCollection<Shelter>("http://localhost:5000/", "Shelter", "hub");
-            ShelterWorkers = new RestCollection<ShelterWorker>("http://localhost:5000/", "ShelterWorker", "hub");
-            Animals = new RestCollection<Animal>("http://localhost:5000/", "Animal", "hub");
+            Shelters = new RestCollection<Shelter>("http://localhost:45007/", "Shelter", "hub");
+            ShelterWorkers = new RestCollection<ShelterWorker>("http://localhost:45007/", "ShelterWorker", "hub");
+            Animals = new RestCollection<Animal>("http://localhost:45007/", "Animal", "hub");
 
             ShelterEditorService ShelterEditor = new ShelterEditorService();
             ShelterWorkerEditorService WorkerEditor = new ShelterWorkerEditorService();
