@@ -1,2 +1,146 @@
-﻿body {
+﻿html {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    --bg-1: #e66465;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+button {
+    border-radius: 2px;
+    border: 2px solid lightgrey;
+    background: white;
+    font-family: Arial, sans-serif;
+    padding-inline: .5em;
+    padding-block: .3em
+}
+
+ol, ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+header {
+    padding-block: 1rem;
+    background: var(--bg-1);
+    position: relative;
+}
+
+header::after {
+        --height: 1.5rem;
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: var(--height);
+        bottom: calc(-1 * var(--height));
+        background-color: #e66465;
+        background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,.8) 50%);
+        background-size: 40px;
+}
+
+header > h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 4rem;
+    color: white;
+    text-align: center;
+}
+
+table {
+    width: 80%;
+    margin-inline: auto;
+    margin-bottom: 5rem;
+    border: 4px solid #EEE;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+table th, table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #EEE;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+#actions {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    margin-inline: auto;
+    justify-content: space-evenly;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin-block: 3rem;
+    border: 4px solid var(--bg-1);
+    border-radius: 10px;
+    padding-inline: 3em;
+    padding-block: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+form > input, form > label {
+    margin-block: .5em .2em;
+}
+
+form > button {
+    margin-block: 2em 0;
+}
+
+form:valid > button {
+    color: green;
+}
+
+input:valid {
+    border: 2px solid #9bff87;
+}
+
+#editform {
+    display: none;
+}
+
+#editform > #shelterID {
+    text-align: center;
+    font-size: 1.2em;
+    padding-bottom: .3em;
+    color: #AAA;
+}
+
+#stats {
+    width: 20%;
+    margin-block: 3rem;
+    border: 4px solid var(--bg-1);
+    border-radius: 10px;
+    padding-inline: 3em;
+    padding-block: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
 }

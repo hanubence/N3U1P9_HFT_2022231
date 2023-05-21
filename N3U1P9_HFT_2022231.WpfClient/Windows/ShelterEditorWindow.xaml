@@ -21,7 +21,15 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Name: "/>
-        <TextBox Grid.Row="0" Grid.Column="1" MaxLength="40" Text="{Binding Actual.Name}"/>
+        <TextBox Grid.Row="0" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="Actual.Name">
+                    <Binding.ValidationRules>
+                        <validation:LengthValidationRule MinLength="5" MaxLength="40" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <Label Grid.Row="1" Grid.Column="0" Content="Address: "/>
         <TextBox Grid.Row="1" Grid.Column="1" MaxLength="40" Text="{Binding Actual.Address}"/>

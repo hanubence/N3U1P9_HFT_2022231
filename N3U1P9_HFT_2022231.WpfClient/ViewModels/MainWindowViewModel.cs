@@ -44,7 +44,7 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
         public RestCollection<Animal> Animals
         {
             get { return animals; }
-            set 
+            set
             {
                 SetProperty(ref animals, value);
                 OnPropertyChanged("CurrentAnimals");
@@ -65,18 +65,24 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
                 (CreateShelterWorkerCommand as RelayCommand).NotifyCanExecuteChanged();
                 (CreateAnimalCommand as RelayCommand).NotifyCanExecuteChanged();
 
-                if (value != null)
-                {
-                    OnPropertyChanged("CurrentShelterWorkers");
-                    OnPropertyChanged("CurrentAnimals");
-                }
+                OnPropertyChanged("CurrentShelterWorkers");
+                OnPropertyChanged("CurrentAnimals");
             }
         }
 
-        //private BindingList<ShelterWorker> currentShelterWorkers;
         public BindingList<ShelterWorker> CurrentShelterWorkers
         {
-            get { return new BindingList<ShelterWorker>(ShelterWorkers.Where(x => x.ShelterId == selectedShelter.ShelterId).ToList()); }
+            get
+            {
+                if (SelectedShelter != null)
+                {
+                    return new BindingList<ShelterWorker>(ShelterWorkers.Where(x => x.ShelterId == selectedShelter.ShelterId).ToList());
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set { }
         }
 
@@ -99,7 +105,17 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
         //private BindingList<Animal> currentAnimals;
         public BindingList<Animal> CurrentAnimals
         {
-            get { return new BindingList<Animal>(Animals.Where(x => x.ShelterId == selectedShelter.ShelterId).ToList()); }
+            get
+            {
+                if (SelectedShelter != null)
+                {
+                    return new BindingList<Animal>(Animals.Where(x => x.ShelterId == selectedShelter.ShelterId).ToList());
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set { }
         }
 
@@ -172,18 +188,23 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             {
                 ShelterWorker NewWorker = new ShelterWorker() { ShelterId = SelectedShelter.ShelterId, Name = "" };
                 if (WorkerEditor.Edit(NewWorker)) ShelterWorkers.Add(NewWorker);
+
+                OnPropertyChanged("CurrentShelterWorkers");
             }, () => SelectedShelter != null);
 
             //UPDATE
             UpdateShelterWorkerCommand = new RelayCommand(() =>
             {
                 if (WorkerEditor.Edit(SelectedWorker)) ShelterWorkers.Update(SelectedWorker);
+
+                OnPropertyChanged("CurrentShelterWorkers");
             }, () => SelectedWorker != null);
 
             //DELETE
             DeleteShelterWorkerCommand = new RelayCommand(() =>
             {
                 ShelterWorkers.Delete(SelectedWorker.WorkerId);
+                OnPropertyChanged("CurrentShelterWorkers");
             }, () => SelectedWorker != null);
 
             //Animal Commands
@@ -193,18 +214,23 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             {
                 Animal NewAnimal = new Animal() { ShelterId = SelectedShelter.ShelterId, Name = "" };
                 if (AnimalEditor.Edit(NewAnimal)) Animals.Add(NewAnimal);
+
+                OnPropertyChanged("CurrentAnimals");
             }, () => SelectedShelter != null);
 
             //UPDATE
             UpdateAnimalCommand = new RelayCommand(() =>
             {
                 if (AnimalEditor.Edit(SelectedAnimal)) Animals.Update(SelectedAnimal);
+
+                OnPropertyChanged("CurrentAnimals");
             }, () => SelectedAnimal != null);
 
             //DELETE
             DeleteAnimalCommand = new RelayCommand(() =>
             {
                 Animals.Delete(SelectedAnimal.AnimalId);
+                OnPropertyChanged("CurrentAnimals");
             }, () => SelectedAnimal != null);
         }
     }

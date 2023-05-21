@@ -1,5 +1,10 @@
-const baseUrl = "http://localhost:45007";
+const baseUrl = "http://localhost:50000";
 let shelters = [];
+
+
+let shelter;
+let form = document.getElementById('editform');
+
 let connection = null;
 getdata();
 setupSignalR();
@@ -7,7 +12,7 @@ setupSignalR();
 
 function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
-        .withUrl(`http://localhost:45007/hub`)
+        .withUrl(`${baseUrl}/hub`)
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
@@ -17,6 +22,14 @@ function setupSignalR() {
 
     connection.on("ShelterDeleted", (user, message) => {
         getdata();
+    });
+
+    connection.on("ShelterUpdated", (user, message) => {
+        getdata();
+    });
+
+    connection.on("Connected", () => {
+        console.log("SignalR connected");
     });
 
     connection.onclose(async () => {
@@ -44,17 +57,68 @@ async function getdata() {
             shelters = y;
             display();
         });
+
+    await fetch(`${baseUrl}/Stats/GetAverageBudget`)
+        .then(x => x.json())
+        .then(x => {
+            document.querySelector('#stats > #avg').innerHTML =
+                `$${Math.round(x)}`;
+        });
 }
 
 function display() {
-    document.getElementById('resultarea').innerHTML = "";
+    document.getElementById('shelterdata').innerHTML = "";
     shelters.forEach(t => {
-        document.getElementById('resultarea').innerHTML +=
-            "<tr><td>" + t.shelterId + "</td><td>"
-            + t.name + "</td><td>" +
-            `<button type="button" onclick="remove(${t.shelterId})">Delete</button>`
-            + "</td></tr>";
+        addShelter(t)
     });
+}
+
+function addShelter(shelter) {
+    console.log(shelter)
+    document.getElementById('shelterdata').innerHTML +=
+        "<tr><td>" + shelter.shelterId + "</td>" +
+        "<td>" + shelter.name + "</td>" +
+        "<td>" + shelter.address + "</td>" +
+        "<td>$" + shelter.annualBudget + "</td>" +
+        `<td><button type="button" onclick="remove(${shelter.shelterId})">Delete</button>` +
+        `<button type="button" onclick="showUpdateMenu(${shelter.shelterId})">Update</button>`
+        + "</td></tr>";
+}
+
+function showUpdateMenu(id) {
+    form.style.setProperty('display', 'flex');
+
+    shelter = shelters.find(s => s.shelterId == id);
+
+    document.querySelector('#editform > #shelterID').textContent = `Editing ID: ${shelter.shelterId}`;
+    document.querySelector('#editform > #name').value = shelter.name;
+    document.querySelector('#editform > #address').value = shelter.address;
+    document.querySelector('#editform > #budget').value = shelter.annualBudget;
+}
+
+function update() {
+    fetch(`${baseUrl}/Shelter`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+            {
+                "shelterId": shelter.shelterId,
+                "name": document.querySelector('#editform > #name').value,
+                "address": document.querySelector('#editform > #address').value,
+                "annualBudget": document.querySelector('#editform > #budget').value
+            }
+        )
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+    form.style.setProperty('display', 'none');
 }
 
 function remove(id) {
@@ -73,18 +137,24 @@ function remove(id) {
 }
 
 function create() {
-    let name = document.getElementById('sheltername').value;
-    fetch(`${baseUrl}/hub`, {
+    fetch(`${baseUrl}/Shelter`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
-            { Name: name })
-    })
+            {
+                "name": document.querySelector('#createform > #name').value,
+                "address": document.querySelector('#createform > #address').value,
+                "annualBudget": document.querySelector('#createform > #budget').value
+            })
+        })
         .then(response => response)
         .then(data => {
-            console.log('Success:', data);
+
+            document.querySelector('#createform > #name').value = "";
+            document.querySelector('#createform > #address').value = "";
+            document.querySelector('#createform > #budget').value = "";
+
             getdata();
         })
         .catch((error) => { console.error('Error:', error); });
-
 }
