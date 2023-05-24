@@ -4,13 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:N3U1P9_HFT_2022231.WpfClient"
-        xmlns:vm="clr-namespace:N3U1P9_HFT_2022231.WpfClient.ViewModels"
         mc:Ignorable="d"
         Title="Shelter Manager" Height="450" Width="1500">
-    <Window.DataContext>
-        <vm:MainWindowViewModel />
-    </Window.DataContext>
-        
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="9*"/>
@@ -23,19 +18,31 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Shelters}" SelectedItem="{Binding SelectedShelter}">
-            <ListBox.ItemTemplate >
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding ShelterId}"/>
-                        <Label Content="{Binding Name}"/>
-                        <Label Content="{Binding Address}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Grid Grid.Row="0" Grid.Column="0">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding CurrentShelterWorkers}" SelectedItem="{Binding SelectedWorker}">
+            <ComboBox Grid.Row="0" 
+                      ItemsSource="{Binding Path=Shelters}" 
+                      SelectedItem="{Binding SelectedShelter}" 
+                      DisplayMemberPath="Name" 
+                      IsEditable="True"
+                      IsReadOnly="True"
+                      Focusable="False"
+                      Text="-- Select Shelter --" />
+
+            <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Stretch">
+                <Label Content="{Binding SelectedShelter.ShelterId}" ContentStringFormat="ID: {0}" />
+                <Label Content="{Binding SelectedShelter.Name}" ContentStringFormat="Name: {0}" />
+                <Label Content="{Binding SelectedShelter.Address}" ContentStringFormat="Address: {0}" />
+                <Label Content="{Binding SelectedShelter.AnnualBudget}" ContentStringFormat="Annual budget: ${0}" />
+            </StackPanel>
+        </Grid>
+
+        <ListBox x:Name="WorkerList" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding CurrentShelterWorkers}" SelectedItem="{Binding SelectedWorker}" GotFocus="WorkerList_GotFocus">
             <ListBox.ItemTemplate >
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
@@ -62,7 +69,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox Grid.Row="0" Grid.Column="2" ItemsSource="{Binding CurrentAnimals}" SelectedItem="{Binding SelectedAnimal}">
+        <ListBox x:Name="AnimalList" Grid.Row="0" Grid.Column="2" ItemsSource="{Binding CurrentAnimals}" SelectedItem="{Binding SelectedAnimal}" GotFocus="AnimalList_GotFocus">
             <ListBox.ItemTemplate >
                 <DataTemplate>
                     <StackPanel Orientation="Vertical">
@@ -88,8 +95,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
-
 
         <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>

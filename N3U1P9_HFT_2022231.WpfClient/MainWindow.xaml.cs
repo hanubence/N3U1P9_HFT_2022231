@@ -1,4 +1,5 @@
-﻿using System;
+﻿using N3U1P9_HFT_2022231.WpfClient.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace N3U1P9_HFT_2022231.WpfClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel vm;
         public MainWindow()
         {
             InitializeComponent();
+            vm = new MainWindowViewModel();
+            this.DataContext = vm;
+        }
+
+        private void WorkerList_GotFocus(object sender, RoutedEventArgs e)
+        {
+            vm.SelectedAnimal = null;
+        }
+
+        private void AnimalList_GotFocus(object sender, RoutedEventArgs e)
+        {
+            vm.SelectedWorker = null;
         }
     }
 }

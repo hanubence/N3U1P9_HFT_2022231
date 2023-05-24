@@ -374,7 +374,6 @@ namespace N3U1P9_HFT_2022231.WpfClient
                     });
                 });
             }
-
         }
 
         public void Update(T item)

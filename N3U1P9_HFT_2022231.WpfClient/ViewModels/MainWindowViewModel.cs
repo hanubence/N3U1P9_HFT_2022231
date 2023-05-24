@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using N3U1P9_HFT_2022231.WpfClient;
+﻿using System.Linq;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using N3U1P9_HFT_2022231.Models;
 using System.Windows.Input;
 using System.ComponentModel;
 using N3U1P9_HFT_2022231.WpfClient.Services;
-using CommunityToolkit.Mvvm.DependencyInjection;
-using System.Windows;
+using System.Collections.Specialized;
 
 namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
 {
@@ -24,8 +18,6 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             set
             {
                 SetProperty(ref shelters, value);
-                OnPropertyChanged("CurrentShelterWorkers");
-                OnPropertyChanged("CurrentAnimals");
             }
         }
 
@@ -36,7 +28,6 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             set
             {
                 SetProperty(ref shelterWorkers, value);
-                OnPropertyChanged("CurrentShelterWorkers");
             }
         }
 
@@ -47,7 +38,6 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             set
             {
                 SetProperty(ref animals, value);
-                OnPropertyChanged("CurrentAnimals");
             }
         }
 
@@ -93,16 +83,15 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             set
             {
                 SetProperty(ref selectedWorker, value);
-                (UpdateAnimalCommand as RelayCommand).NotifyCanExecuteChanged();
-                (DeleteAnimalCommand as RelayCommand).NotifyCanExecuteChanged();
                 (UpdateShelterWorkerCommand as RelayCommand).NotifyCanExecuteChanged();
                 (DeleteShelterWorkerCommand as RelayCommand).NotifyCanExecuteChanged();
-                (UpdateShelterCommand as RelayCommand).NotifyCanExecuteChanged();
-                (DeleteShelterCommand as RelayCommand).NotifyCanExecuteChanged();
+
+                SetProperty(ref selectedAnimal, null);
+                (UpdateAnimalCommand as RelayCommand).NotifyCanExecuteChanged();
+                (DeleteAnimalCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
-        //private BindingList<Animal> currentAnimals;
         public BindingList<Animal> CurrentAnimals
         {
             get
@@ -129,10 +118,10 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
                 SetProperty(ref selectedAnimal, value);
                 (UpdateAnimalCommand as RelayCommand).NotifyCanExecuteChanged();
                 (DeleteAnimalCommand as RelayCommand).NotifyCanExecuteChanged();
+
+                SetProperty(ref selectedWorker, null);
                 (UpdateShelterWorkerCommand as RelayCommand).NotifyCanExecuteChanged();
                 (DeleteShelterWorkerCommand as RelayCommand).NotifyCanExecuteChanged();
-                (UpdateShelterCommand as RelayCommand).NotifyCanExecuteChanged();
-                (DeleteShelterCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
@@ -152,8 +141,12 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
         public MainWindowViewModel()
         {
             Shelters = new RestCollection<Shelter>("http://localhost:50000/", "Shelter", "hub");
+
             ShelterWorkers = new RestCollection<ShelterWorker>("http://localhost:50000/", "ShelterWorker", "hub");
+            ShelterWorkers.CollectionChanged += ShelterWorkers_CollectionChanged;
+
             Animals = new RestCollection<Animal>("http://localhost:50000/", "Animal", "hub");
+            Animals.CollectionChanged += Animals_CollectionChanged;
 
             ShelterEditorService ShelterEditor = new ShelterEditorService();
             ShelterWorkerEditorService WorkerEditor = new ShelterWorkerEditorService();
@@ -178,7 +171,7 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             DeleteShelterCommand = new RelayCommand(() =>
             {
                 Shelters.Delete(SelectedShelter.ShelterId);
-                SelectedShelter = new Shelter();
+                SelectedShelter = null;
             }, () => SelectedShelter != null);
 
             //ShelterWorker Commands
@@ -188,23 +181,18 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             {
                 ShelterWorker NewWorker = new ShelterWorker() { ShelterId = SelectedShelter.ShelterId, Name = "" };
                 if (WorkerEditor.Edit(NewWorker)) ShelterWorkers.Add(NewWorker);
-
-                OnPropertyChanged("CurrentShelterWorkers");
             }, () => SelectedShelter != null);
 
             //UPDATE
             UpdateShelterWorkerCommand = new RelayCommand(() =>
             {
                 if (WorkerEditor.Edit(SelectedWorker)) ShelterWorkers.Update(SelectedWorker);
-
-                OnPropertyChanged("CurrentShelterWorkers");
             }, () => SelectedWorker != null);
 
             //DELETE
             DeleteShelterWorkerCommand = new RelayCommand(() =>
             {
                 ShelterWorkers.Delete(SelectedWorker.WorkerId);
-                OnPropertyChanged("CurrentShelterWorkers");
             }, () => SelectedWorker != null);
 
             //Animal Commands
@@ -214,24 +202,29 @@ namespace N3U1P9_HFT_2022231.WpfClient.ViewModels
             {
                 Animal NewAnimal = new Animal() { ShelterId = SelectedShelter.ShelterId, Name = "" };
                 if (AnimalEditor.Edit(NewAnimal)) Animals.Add(NewAnimal);
-
-                OnPropertyChanged("CurrentAnimals");
             }, () => SelectedShelter != null);
 
             //UPDATE
             UpdateAnimalCommand = new RelayCommand(() =>
             {
                 if (AnimalEditor.Edit(SelectedAnimal)) Animals.Update(SelectedAnimal);
-
-                OnPropertyChanged("CurrentAnimals");
             }, () => SelectedAnimal != null);
 
             //DELETE
             DeleteAnimalCommand = new RelayCommand(() =>
             {
                 Animals.Delete(SelectedAnimal.AnimalId);
-                OnPropertyChanged("CurrentAnimals");
             }, () => SelectedAnimal != null);
+        }
+
+        private void ShelterWorkers_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged("CurrentShelterWorkers");
+        }
+
+        private void Animals_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged("CurrentAnimals");
         }
     }
 }
